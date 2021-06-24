@@ -22,7 +22,7 @@
     <string name="shortcut_string">Shortcut</string>
     <string name="left_string">Left</string>
     <string name="right_string">Right</string>
-    <string name="forward_string">Forwards</string>
+    <string name="forward_string">Forwards </string>
     <string name="backward_string">Backwards</string>
-    <string name="jump_string">Jump</string>
+    <string name="jump_string">   Jump  </string>
 </resources>

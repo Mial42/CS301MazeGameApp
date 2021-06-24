@@ -86,4 +86,31 @@
         android:layout_marginEnd="20dp"
         android:textSize="20sp"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shortcut_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/walls_button"
+        app:layout_constraintBottom_toTopOf="@id/energy_consumed_text"
+        android:textSize="130dp"
+        android:text="@string/shortcut_string"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/start_pause_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/energy_consumed_text"
+        android:text="@string/energy_consumed_string"
+        android:textSize="20sp"
+        />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/start_pause_button"
+        app:layout_constraintLeft_toRightOf="@id/energy_consumed_text"
+        app:layout_constraintRight_toRightOf="parent"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
