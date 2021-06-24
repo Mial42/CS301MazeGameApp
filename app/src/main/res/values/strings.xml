@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">AMazeByNickWilson</string>
+    <string name="a_maze_title">Create a Maze and Solve it!</string>
+    <string name="difficulty_string">Difficulty: </string>
+    <string name="rooms_string">Empty Rooms: </string>
+    <string name="generation_string">Generation Algorithm: </string>
+    <string name="solution_string">Solution Algorithm: </string>
+    <string name="generate_button">Generate New</string>
+    <string name="revisit_button">Revisit Old</string>
+    <string name="progress_string">Generating Maze...</string>
+    <string name="win_string">You Won!</string>
+    <string name="lose_string">You Lost</string>
+    <string name="restart_string">Restart!</string>
+    <string name="energy_consumed_string">Energy Consumed: </string>
+    <string name="path_length_string">Path Length: </string>
+    <string name="show_walls_string">Show Visible Walls</string>
+    <string name="show_solution_string">Show Solution</string>
+    <string name="show_map_string">Show Full Map</string>
+    <string name="pause_string">Pause</string>
+    <string name="start_string">Start</string>
+    <string name="energy_remaining_string">Energy Remaining</string>
+    <string name="shortcut_string">Shortcut</string>
+    <string name="left_string">Left</string>
+    <string name="right_string">Right</string>
+    <string name="forward_string">Forwards</string>
+    <string name="backward_string">Backwards</string>
+    <string name="jump_string">Jump</string>
 </resources>
