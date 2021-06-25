@@ -31,12 +31,19 @@ public class GeneratingActivity extends AppCompatActivity {
      * Boolean representing rooms status of the maze
      */
     boolean rooms;
-
     /**
      * The ProgressBar that displays the Maze Generation progress (1-100)
      */
-
     ProgressBar progressBar;
+    /**
+     * Background thread that generates the maze
+     */
+    private Thread generateMaze;
+    /**
+     * Boolean that tells the generateMaze thread to stop what it's doing.
+     * Used for the back button.
+     */
+    boolean stopGeneration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,37 +55,52 @@ public class GeneratingActivity extends AppCompatActivity {
         generationAlgorithm = i.getStringExtra("gener");
         solutionAlgorithm = i.getStringExtra("solut");
         progressBar = (ProgressBar)findViewById(R.id.generating_progress_bar);
+        stopGeneration = false;
         generateMaze();
 
     }
     /**
+     *
+     */
+    @Override
+    public void onBackPressed(){
+        Log.v("Back Press GeneratingActivity", "Back Press Called");
+        stopGeneration = true;
+        super.onBackPressed();
+    }
+    /**
      * Performs background calculations on a background thread. For P4, Counts to 100.
      * For P5, generates a Maze.
+     * Then starts the next activity.
      */
     private void generateMaze(){
 
-        Thread generateMaze = new Thread(new Runnable() {
+        generateMaze = new Thread(new Runnable() {
             public void run() {
                 for(int i = 0; i < 100; i++){
+                    if(stopGeneration){
+                        break;
+                    }
                     progressBar.incrementProgressBy(1);
                     Log.v("GenerateMaze Progress Count", "Progress Count: " + progressBar.getProgress());
-                    long curTime = System.currentTimeMillis();
                     try {
                         Thread.sleep(100);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-                Intent intent;
-                if ("Manual".equals(solutionAlgorithm)) {
-                    //Go to PlayManuallyActivity
-                    intent = new Intent(GeneratingActivity.this, PlayManuallyActivity.class);
+                if(!stopGeneration) {
+                    Intent intent;
+
+                    if ("Manual".equals(solutionAlgorithm)) {
+                        //Go to PlayManuallyActivity
+                        intent = new Intent(GeneratingActivity.this, PlayManuallyActivity.class);
+                    } else {
+                        //Go to PlayAnimationActivity
+                        intent = new Intent(GeneratingActivity.this, PlayAnimationActivity.class);
+                    }
+                    startActivity(intent);
                 }
-                else {
-                    //Go to PlayAnimationActivity
-                    intent = new Intent(GeneratingActivity.this, PlayAnimationActivity.class);
-                }
-                startActivity(intent);
             }
         });
         generateMaze.start();
