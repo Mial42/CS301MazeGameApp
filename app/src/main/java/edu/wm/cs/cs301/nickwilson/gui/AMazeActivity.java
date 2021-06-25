@@ -2,6 +2,7 @@ package edu.wm.cs.cs301.nickwilson.gui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -65,7 +66,7 @@ public class AMazeActivity extends AppCompatActivity {
         revisitOldButton = (Button)findViewById(R.id.revisit_old_button);
         //Set up the sizeBar's functionality
         setSizeBarListener();
-        //Set up the spinner's functionality
+        //Set up the spinner's listeners
         setGenerationSpinnerListener();
         setSolutionSpinnerListener();
         //Set the default room value to true
@@ -82,6 +83,42 @@ public class AMazeActivity extends AppCompatActivity {
                 solutionAlgorithms);
         solAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         solutionSpinner.setAdapter(solAdapter);
+        //Set the generateNewButton's functionality
+        generateNewButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String message = "Skill Level: " + skillLevel + "\nGeneration Algorithm: " +
+                        generationAlgorithm + "\nSolution Algorithm: " + solutionAlgorithm
+                        + "\nRooms Status: " + roomsButton.isChecked();
+                Toast.makeText(AMazeActivity.this, message,
+                        Toast.LENGTH_SHORT).show();
+                Log.v("setSizeBarListener",message);
+
+                Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
+                i.putExtra("rooms", roomsButton.isChecked());
+                i.putExtra("skill", skillLevel);
+                i.putExtra("gener", generationAlgorithm);
+                i.putExtra("solut", solutionAlgorithm);
+                startActivity(i);
+            }
+        });
+        //Set the revisit old button's functionality. Will change for P5.
+        revisitOldButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String message = "Skill Level: " + skillLevel + "\nGeneration Algorithm: " +
+                        generationAlgorithm + "\nSolution Algorithm: " + solutionAlgorithm
+                        + "\nRooms Status: " + roomsButton.isChecked();
+                Toast.makeText(AMazeActivity.this, message,
+                        Toast.LENGTH_SHORT).show();
+                Log.v("setSizeBarListener",message);
+
+                Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
+                i.putExtra("rooms", roomsButton.isChecked());
+                i.putExtra("skill", skillLevel);
+                i.putExtra("gener", generationAlgorithm);
+                i.putExtra("solut", solutionAlgorithm);
+                startActivity(i);
+            }
+        });
     }
 
     /**
@@ -96,7 +133,6 @@ public class AMazeActivity extends AppCompatActivity {
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
