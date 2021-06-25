@@ -82,7 +82,6 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 Toast.makeText(PlayAnimationActivity.this, message,
                         Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
-                //Swap the strings on the button to change it from start to pause and vice-versa
                 Intent shortcutIntent = new Intent(PlayAnimationActivity.this, FinishActivity.class);
                 shortcutIntent.putExtra("energy", energyConsumed);
                 shortcutIntent.putExtra("win", won);
