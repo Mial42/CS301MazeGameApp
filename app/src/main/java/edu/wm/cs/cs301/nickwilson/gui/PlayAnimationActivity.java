@@ -31,9 +31,9 @@ public class PlayAnimationActivity extends AppCompatActivity {
      */
     private Button shortcutButton;
     /**
-     * Energy bar showing how much energy has been consumed
+     * Energy text showing how much energy has been consumed
      */
-    private ProgressBar energyBar;
+    private TextView energyText;
     /**
      * Button for starting and pausing the animation
      */
@@ -63,11 +63,12 @@ public class PlayAnimationActivity extends AppCompatActivity {
         solutionToggle = (ToggleButton)findViewById(R.id.solution_button);
         mapToggle = (ToggleButton)findViewById(R.id.map_button);
         shortcutButton = findViewById(R.id.shortcut_button);
-        energyBar = findViewById(R.id.energy_consumed_bar);
+        energyText = findViewById(R.id.energy_consumed_text);
+        energyText.setText("Energy Consumed: " + energyConsumed);
         startPauseButton = findViewById(R.id.start_pause_button);
         pathLength = 0;
         pathLengthText = findViewById(R.id.path_length_text);
-        pathLengthText.setText(R.string.path_length_string + " " +  pathLength);
+        pathLengthText.setText("Path Length: " +  pathLength);
         startPauseButton.setText(R.string.pause_string);
         //Toggles are all active by default
         wallsToggle.setChecked(true);
@@ -101,7 +102,7 @@ public class PlayAnimationActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
                 //Swap the strings on the button to change it from start to pause and vice-versa
-                if(startPauseButton.getText().equals(R.string.pause_string)){
+                if(startPauseButton.getText().equals("Pause")){
                     startPauseButton.setText(R.string.start_string);
                 }
                 else{

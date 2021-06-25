@@ -46,8 +46,8 @@ public class FinishActivity extends AppCompatActivity {
             victoryText.setText(R.string.lose_string);
         }
         if(pathLength > -1 && energyConsumed > -1){//If playing animated
-            energyText.setText(R.string.energy_consumed_string + " " + energyConsumed);
-            pathText.setText(R.string.path_length_string + " " + pathLength);
+            energyText.setText("Energy Consumed: " + energyConsumed);
+            pathText.setText("Path Length: " + pathLength);
         }
         else{ //If playing manually, don't need to see energy or path length
             energyText.setVisibility(View.INVISIBLE);
