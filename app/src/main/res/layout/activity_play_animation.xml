@@ -94,7 +94,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/walls_button"
         app:layout_constraintBottom_toTopOf="@id/energy_consumed_text"
-        android:textSize="130dp"
+        android:textSize="120dp"
         android:text="@string/shortcut_string"
         />
     <TextView
