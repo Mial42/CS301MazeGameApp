@@ -60,7 +60,7 @@ public class GeneratingActivity extends AppCompatActivity {
 
     }
     /**
-     *
+     * Stops the generation of the maze and returns to the starting screen.
      */
     @Override
     public void onBackPressed(){

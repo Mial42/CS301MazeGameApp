@@ -104,7 +104,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:id="@+id/energy_consumed_text"
         android:text="@string/energy_consumed_string"
-        android:textSize="20sp"
+        android:textSize="28sp"
         />
     <ProgressBar
         android:layout_width="wrap_content"
@@ -112,5 +112,10 @@
         app:layout_constraintBottom_toTopOf="@id/start_pause_button"
         app:layout_constraintLeft_toRightOf="@id/energy_consumed_text"
         app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/energy_consumed_bar"
+        android:minHeight="10dp"
+        android:minWidth="180dp"
+        android:min="0"
+        android:max="2000"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
