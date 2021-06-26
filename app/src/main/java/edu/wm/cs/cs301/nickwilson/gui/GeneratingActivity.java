@@ -44,6 +44,13 @@ public class GeneratingActivity extends AppCompatActivity {
      * Used for the back button.
      */
     boolean stopGeneration;
+
+    /**
+     * This method retrieves the appropriate data from the previous activity
+     * and sets the various fields to the corresponding XML widgets
+     * and default values.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

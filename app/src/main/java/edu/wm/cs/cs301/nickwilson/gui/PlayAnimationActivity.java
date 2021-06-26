@@ -54,11 +54,18 @@ public class PlayAnimationActivity extends AppCompatActivity {
      * int recording the total energy consumed
      */
     private int energyConsumed = 0;
+
+    /**
+     * This method instantiates the various fields and sets them to the corresponding
+     * XML components. It also sets up the various listeners for the various buttons.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_animation);
-
+        //Sets the various fields to the XML components and
+        //sets appropriate texts
         wallsToggle = (ToggleButton)findViewById(R.id.walls_button);
         solutionToggle = (ToggleButton)findViewById(R.id.solution_button);
         mapToggle = (ToggleButton)findViewById(R.id.map_button);
@@ -90,9 +97,25 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 startActivity(shortcutIntent);
             }
         });
-        //Make the start/pause button a listener. For now, it just
-        //Creates a toast saying whether or not it is starting or pausing,
-        //and changes its text appropriately.
+        setStartPauseButtonListener();
+        setToggleListeners();
+    }
+    /**
+     * Returns to the starting screen upon pressing the back button.
+     */
+    @Override
+    public void onBackPressed(){
+        Log.v("Back Press PlayAnimationActivity", "Back Press Called");
+        Intent goHome = new Intent(PlayAnimationActivity.this, AMazeActivity.class);
+        startActivity(goHome);
+    }
+
+    /**
+     * Make the start/pause button a listener. For now, it just
+     * creates a toast saying whether or not it is starting or pausing,
+     * and changes its text appropriately.
+     */
+    private void setStartPauseButtonListener(){
         startPauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //Going to add functionality here for P5
@@ -110,6 +133,12 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    /**
+     * This method sets up the various listeners for the toggles at the top of the screen.
+     * For now, just displays Toasts and Logs data, but for P5 will do things.
+     */
+    private void setToggleListeners(){
         //Make wallToggle a listener, so I can add the required functionality for P5
         wallsToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -143,14 +172,5 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 Log.v("PlayAnimationActivity",message);
             }
         });
-    }
-    /**
-     * Returns to the starting screen upon pressing the back button.
-     */
-    @Override
-    public void onBackPressed(){
-        Log.v("Back Press PlayAnimationActivity", "Back Press Called");
-        Intent goHome = new Intent(PlayAnimationActivity.this, AMazeActivity.class);
-        startActivity(goHome);
     }
 }

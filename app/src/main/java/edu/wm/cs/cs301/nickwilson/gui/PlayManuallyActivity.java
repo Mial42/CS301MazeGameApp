@@ -49,6 +49,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
      * Button to jump
      */
     private Button jumpButton;
+
+    /**
+     * This method instantiates the various fields and sets them to the
+     * appropriate XML components. Also sets the various listeners for the buttons.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +84,14 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 startActivity(shortcutIntent);
             }
         });
+        setToggleListeners();
+        setDirectionalListeners();
+    }
+    /**
+     * This method sets up the various listeners for the toggles at the top of the screen.
+     * For now, just displays Toasts and Logs data, but for P5 will do things.
+     */
+    private void setToggleListeners(){
         //Make wallToggle a listener, so I can add the required functionality for P5
         wallsToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -111,6 +125,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 Log.v("PlayManuallyActivity",message);
             }
         });
+    }
+    /**
+     * This method sets the listeners to the control buttons, that is, left, right,
+     * forwards, backwards, and jump.
+     */
+    private void setDirectionalListeners(){
 
         //Make leftButton a listener, so I can add the required functionality for P5
         leftButton.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +188,6 @@ public class PlayManuallyActivity extends AppCompatActivity {
             }
         });
     }
-
     /**
      * Returns to the starting screen upon pressing the back button.
      */

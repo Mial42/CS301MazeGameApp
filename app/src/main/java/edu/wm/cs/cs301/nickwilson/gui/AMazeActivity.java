@@ -53,6 +53,12 @@ public class AMazeActivity extends AppCompatActivity {
      * String representing the solution algorithm.
      */
     private String solutionAlgorithm = "Manual";
+
+    /**
+     * This method instantiates the various fields and sets them
+     * to the appropriate XML components.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,36 +77,17 @@ public class AMazeActivity extends AppCompatActivity {
         setSolutionSpinnerListener();
         //Set the default room value to true
         roomsButton.setChecked(true);
-        //Set up the generation spinner's functionality
-        String[] generationAlgorithms = {"Kruskal", "DFS", "Prim"};
-        ArrayAdapter genAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,
-                generationAlgorithms);
-        genAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        generationSpinner.setAdapter(genAdapter);
-        //Set up the solution spinner's functionality
-        String[] solutionAlgorithms = {"Manual", "WallFollower", "Wizard"};
-        ArrayAdapter solAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,
-                solutionAlgorithms);
-        solAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        solutionSpinner.setAdapter(solAdapter);
-        //Set the generateNewButton's functionality
-        generateNewButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String message = "Skill Level: " + skillLevel + "\nGeneration Algorithm: " +
-                        generationAlgorithm + "\nSolution Algorithm: " + solutionAlgorithm
-                        + "\nRooms Status: " + roomsButton.isChecked();
-                Toast.makeText(AMazeActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
-                Log.v("setSizeBarListener",message);
+        fillSpinners();
+        setGenerateNewButtonListener();
+        setRevisitOldButtonListener();
+    }
 
-                Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
-                i.putExtra("rooms", roomsButton.isChecked());
-                i.putExtra("skill", skillLevel);
-                i.putExtra("gener", generationAlgorithm);
-                i.putExtra("solut", solutionAlgorithm);
-                startActivity(i);
-            }
-        });
+    /**
+     * This method sets up a listener for the revisit old button.
+     * For now, it does the same thing as the generate new button,
+     * but that will change in P5.
+     */
+    private void setRevisitOldButtonListener(){
         //Set the revisit old button's functionality. Will change for P5.
         revisitOldButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -120,7 +107,49 @@ public class AMazeActivity extends AppCompatActivity {
             }
         });
     }
+    /**
+     * This method sets up a listener for the Generate New button.
+     * This moves the various setup data pieces to the GeneratingActivity
+     * to actually put the Maze together.
+     */
+    private void setGenerateNewButtonListener(){
+        //Set the generateNewButton's functionality
+        generateNewButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String message = "Skill Level: " + skillLevel + "\nGeneration Algorithm: " +
+                        generationAlgorithm + "\nSolution Algorithm: " + solutionAlgorithm
+                        + "\nRooms Status: " + roomsButton.isChecked();
+                Toast.makeText(AMazeActivity.this, message,
+                        Toast.LENGTH_SHORT).show();
+                Log.v("setSizeBarListener",message);
 
+                Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
+                i.putExtra("rooms", roomsButton.isChecked());
+                i.putExtra("skill", skillLevel);
+                i.putExtra("gener", generationAlgorithm);
+                i.putExtra("solut", solutionAlgorithm);
+                startActivity(i);
+            }
+        });
+    }
+    /**
+     * This method fills the generation and solution spinners. Put here
+     * to reduce clutter in onCreate.
+     */
+    private void fillSpinners(){
+        //Set up the generation spinner's functionality
+        String[] generationAlgorithms = {"Kruskal", "DFS", "Prim"};
+        ArrayAdapter genAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,
+                generationAlgorithms);
+        genAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        generationSpinner.setAdapter(genAdapter);
+        //Set up the solution spinner's functionality
+        String[] solutionAlgorithms = {"Manual", "WallFollower", "Wizard"};
+        ArrayAdapter solAdapter = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item,
+                solutionAlgorithms);
+        solAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        solutionSpinner.setAdapter(solAdapter);
+    }
     /**
      * This method sets the listener for the sizeBar seekbar. It sets
      * the skillLevel to the progress of the sizeBar. For P4, it also spawns a toast
