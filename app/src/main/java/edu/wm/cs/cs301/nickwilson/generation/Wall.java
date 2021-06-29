@@ -59,7 +59,7 @@ public class Wall {
     /**
      * color of wall, only set by constructor and file reader.
      */
-//    private Color col;
+    private int col;
     /**
      * partition flag, initially set to false. 
      * BSPBuilder code sets it to true for border case
@@ -145,7 +145,7 @@ public class Wall {
      * @param cc
      *            obscure
      */
-    private Color createColor(final int distance, final int cc) {
+    private int createColor(final int distance, final int cc) {
         final int d = distance / 4;
         // mod used to limit the number of colors to 6
         final int rgbValue = calculateRGBValue(d);
@@ -358,7 +358,7 @@ public class Wall {
     /**
      * @return the color
      */
-    public Color getColor() {
+    public int getColor() {
         return col;
     }
 
@@ -366,7 +366,7 @@ public class Wall {
      * @param color
      *            the color to set
      */
-    public void setColor(final Color color) {
+    public void setColor(final int color) {
         /*
          * for debugging: use random color settings such that all walls look
          * different

@@ -3,11 +3,9 @@
  */
 package edu.wm.cs.cs301.nickwilson.gui;
 
-import generation.CardinalDirection;
-import generation.Floorplan;
-import generation.Maze;
-import java.awt.Color;
-import java.awt.Graphics;
+import edu.wm.cs.cs301.nickwilson.generation.CardinalDirection;
+import edu.wm.cs.cs301.nickwilson.generation.Floorplan;
+import edu.wm.cs.cs301.nickwilson.generation.Maze;
 
 /**
  * This class encapsulates all functionality to draw a map of the overall maze,

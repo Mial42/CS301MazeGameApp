@@ -3,16 +3,15 @@
  */
 package edu.wm.cs.cs301.nickwilson.gui;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import android.graphics.Color;
+
 import java.util.List;
 
-import generation.BSPBranch;
-import generation.BSPLeaf;
-import generation.BSPNode;
-import generation.Floorplan;
-import generation.Wall;
+import edu.wm.cs.cs301.nickwilson.generation.BSPBranch;
+import edu.wm.cs.cs301.nickwilson.generation.BSPLeaf;
+import edu.wm.cs.cs301.nickwilson.generation.BSPNode;
+import edu.wm.cs.cs301.nickwilson.generation.Floorplan;
+import edu.wm.cs.cs301.nickwilson.generation.Wall;
 
 /**
  * This class encapsulates all functionality for drawing the current view 
@@ -40,9 +39,9 @@ public class FirstPersonView {
 	private final int stepSize;   // = map_unit/4;
 	// map scale may be adjusted by user input, controlled in StatePlaying
 	// colors for background
-	static final Color greenWM = Color.decode("#115740");
-	static final Color goldWM = Color.decode("#916f41");
-	static final Color yellowWM = Color.decode("#FFFF99");
+	static final int greenWM = Color.parseColor("#115740");
+	static final int goldWM = Color.parseColor("#916f41");
+	static final int yellowWM = Color.parseColor("#FFFF99");
 	
 	/**
 	 * A data structure to store which wallboards have been visible during
@@ -78,7 +77,7 @@ public class FirstPersonView {
 	 * with the current buffer image is the responsibility of
 	 * the StatePlaying class.
 	 */
-	private Graphics2D gc; 
+	private MazePanel mp; //TODO: Need to make mp refer to the correct MazePanel on screen
 	
 	/**
 	 * The current position (x,y) scaled by map_unit and 
@@ -157,13 +156,13 @@ public class FirstPersonView {
 	 */
 	public void draw(MazePanel panel, int x, int y, int walkStep, int ang, float percentToExit) {
 		// obtain a Graphics2D object we can draw on
-		Graphics g = panel.getBufferGraphics() ;
+		//Graphics g = panel.getBufferGraphics() ;
         // viewers draw on the buffer graphics
-        if (null == g) {
-            System.out.println("FirstPersonDrawer.draw: can't get graphics object to draw on, skipping redraw operation") ;
-            return;
-        }
-        gc = (Graphics2D) g ;
+//        if (null == g) {
+//            System.out.println("FirstPersonDrawer.draw: can't get graphics object to draw on, skipping redraw operation") ;
+//            return;
+//        }
+        //gc = (Graphics2D) g ;
         
         // update fields angle, viewx, viewy for current position and viewing angle
         angle = ang ;
@@ -171,9 +170,11 @@ public class FirstPersonView {
         
         // update graphics
         // draw background figure: lightGrey to green on bottom half, yellow to gold on top half
-        drawBackground(g, percentToExit);
+        //drawBackground(g, percentToExit);
+		panel.addBackground(percentToExit);
         // set color to white and draw what ever can be seen from the current position
-        g.setColor(Color.white);
+        //g.setColor(Color.white);
+		panel.setColor(Color.WHITE);
         // reset the set of ranges to a single new element (0,width-1)
         // to cover the full width of the view 
         // as we have not drawn any polygons (walls) yet.
@@ -218,56 +219,58 @@ public class FirstPersonView {
 	 * @param graphics to draw on, must be not null
 	 * @param percentToExit gives the distance to exit
 	 */
-	private void drawBackground(Graphics graphics, float percentToExit) {
-		// black rectangle in upper half of screen
-		// graphics.setColor(Color.black);
-		// dynamic color setting: 
-		graphics.setColor(getBackgroundColor(percentToExit, true));
-		graphics.fillRect(0, 0, viewWidth, viewHeight/2);
-		// grey rectangle in lower half of screen
-		// graphics.setColor(Color.darkGray);
-		// dynamic color setting: 
-		graphics.setColor(getBackgroundColor(percentToExit, false));
-		graphics.fillRect(0, viewHeight/2, viewWidth, viewHeight/2);
-	}
-	/**
-	 * Determine the background color for the top and bottom
-	 * rectangle as a blend between starting color settings
-	 * of yellowWM and lightGray towards goldWM and greenWM as final
-	 * color settings close to the exit
-	 * @param percentToExit describes how far it is to the exit as a percentage value
-	 * @param top is true for the top rectangle, false for the bottom
-	 * @return the color to use for the background rectangle
-	 */
-	private Color getBackgroundColor(float percentToExit, boolean top) {
-		return top? blend(yellowWM, goldWM, percentToExit) : 
-			blend(Color.lightGray, greenWM, percentToExit);
-	}
-
-	/**
-	 * Calculates the weighted average of the two given colors.
-	 * The weight for the first color is expected to be between
-	 * 0 and 1. The weight for the other color is then 1-weight0.
-	 * The result is the weighted average of the red, green, and
-	 * blue components of the colors. The resulting alpha value
-	 * for transparency is the max of the alpha values of both colors.
-	 * @param fstColor is the first color
-	 * @param sndColor is the second color
-	 * @param weightFstColor is the weight of fstColor, {@code 0.0 <= weightFstColor <= 1.0}
-	 * @return blend of both colors as weighted average of their rgb values
-	 */
-	private Color blend(Color fstColor, Color sndColor, double weightFstColor) {
-		if (weightFstColor < 0.1)
-			return sndColor;
-		if (weightFstColor > 0.95)
-			return fstColor;
-	    double r = weightFstColor * fstColor.getRed() + (1-weightFstColor) * sndColor.getRed();
-	    double g = weightFstColor * fstColor.getGreen() + (1-weightFstColor) * sndColor.getGreen();
-	    double b = weightFstColor * fstColor.getBlue() + (1-weightFstColor) * sndColor.getBlue();
-	    double a = Math.max(fstColor.getAlpha(), sndColor.getAlpha());
-
-	    return new Color((int) r, (int) g, (int) b, (int) a);
-	  }
+	//Don't think this is necessary because MazePanel.java does this,
+//	private void drawBackground(Graphics graphics, float percentToExit) {
+//		// black rectangle in upper half of screen
+//		// graphics.setColor(Color.black);
+//		// dynamic color setting:
+//		graphics.setColor(getBackgroundColor(percentToExit, true));
+//		graphics.fillRect(0, 0, viewWidth, viewHeight/2);
+//		// grey rectangle in lower half of screen
+//		// graphics.setColor(Color.darkGray);
+//		// dynamic color setting:
+//		graphics.setColor(getBackgroundColor(percentToExit, false));
+//		graphics.fillRect(0, viewHeight/2, viewWidth, viewHeight/2);
+//	}
+	//Don't think this is necessary because MazePanel.java does this.
+//	/**
+//	 * Determine the background color for the top and bottom
+//	 * rectangle as a blend between starting color settings
+//	 * of yellowWM and lightGray towards goldWM and greenWM as final
+//	 * color settings close to the exit
+//	 * @param percentToExit describes how far it is to the exit as a percentage value
+//	 * @param top is true for the top rectangle, false for the bottom
+//	 * @return the color to use for the background rectangle
+//	 */
+//	private Color getBackgroundColor(float percentToExit, boolean top) {
+//		return top? blend(yellowWM, goldWM, percentToExit) :
+//			blend(Color.lightGray, greenWM, percentToExit);
+//	}
+//Shouldn't be necessary, since Android can already blend things
+//	/**
+//	 * Calculates the weighted average of the two given colors.
+//	 * The weight for the first color is expected to be between
+//	 * 0 and 1. The weight for the other color is then 1-weight0.
+//	 * The result is the weighted average of the red, green, and
+//	 * blue components of the colors. The resulting alpha value
+//	 * for transparency is the max of the alpha values of both colors.
+//	 * @param fstColor is the first color
+//	 * @param sndColor is the second color
+//	 * @param weightFstColor is the weight of fstColor, {@code 0.0 <= weightFstColor <= 1.0}
+//	 * @return blend of both colors as weighted average of their rgb values
+//	 */
+//	private Color blend(Color fstColor, Color sndColor, double weightFstColor) {
+//		if (weightFstColor < 0.1)
+//			return sndColor;
+//		if (weightFstColor > 0.95)
+//			return fstColor;
+//	    double r = weightFstColor * fstColor.getRed() + (1-weightFstColor) * sndColor.getRed();
+//	    double g = weightFstColor * fstColor.getGreen() + (1-weightFstColor) * sndColor.getGreen();
+//	    double b = weightFstColor * fstColor.getBlue() + (1-weightFstColor) * sndColor.getBlue();
+//	    double a = Math.max(fstColor.getAlpha(), sndColor.getAlpha());
+//
+//	    return new Color((int) r, (int) g, (int) b, (int) a);
+//	  }
 	/**
 	 * Recursive method to explore tree of BSP nodes and draw all walls in leaf nodes 
 	 * where the bounding box is visible
@@ -482,7 +485,8 @@ public class FirstPersonView {
 		
 		// moved code for drawing bits and pieces into yet another method to 
 		// gain more clarity on what information is actually needed
-		gc.setColor(wall.getColor());
+		//gc.setColor(wall.getColor());
+		mp.setColor(wall.getColor());
 		boolean drawn = drawPolygons(x1, x2, y11, y12, y21, y22);
 		
 		if (drawn && !wall.isSeen()) {
@@ -562,7 +566,8 @@ public class FirstPersonView {
 			// debug
 			//System.out.println("polygon-x: " + xps[0] + ", " + xps[1] + ", " + xps[2] + ", " + xps[3]) ;
 			//System.out.println("polygon-y: " + yps[0] + ", " + yps[1] + ", " + yps[2] + ", " + yps[3]) ;
-			gc.fillPolygon(xps, yps, 4);
+			//gc.fillPolygon(xps, yps, 4);
+			mp.addFilledPolygon(xps, yps, 4);
 			// for debugging purposes, code will draw a red line around polygon
 			// this makes individual walls visible
 			/*
