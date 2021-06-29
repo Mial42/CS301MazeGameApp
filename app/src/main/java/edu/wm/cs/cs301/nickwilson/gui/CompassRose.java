@@ -2,7 +2,7 @@ package edu.wm.cs.cs301.nickwilson.gui;
 
 
 import android.graphics.Color;
-import android.graphics.fonts.Font;
+//import android.graphics.fonts.Font;
 
 import edu.wm.cs.cs301.nickwilson.generation.CardinalDirection;
 
@@ -41,7 +41,7 @@ public class CompassRose {
      * so this is why it is fixed by the constructor.
      * It could be made flexible with getters/setters if needed.
      */
-    private final Font markerFont;
+//    private final Font markerFont;
     
     // The scaler of the rose.  
     // The bordering circle will be this portion of the component dimensions.
@@ -63,7 +63,9 @@ public class CompassRose {
      * Construct a compass rose with the default settings.
      */
     public CompassRose() {
-        this(0.9, 1.7, Font.decode("Serif-PLAIN-16"));
+        this(0.9, 1.7
+				//,Font.decode("Serif-PLAIN-16")
+		);
     }
      
     /**
@@ -72,12 +74,12 @@ public class CompassRose {
      * @param scaler        The scaler of the rose.  The bordering circle will be this portion of the component dimensions.
      * @param markerRadius  The radius for the marker positions (N/E/S/W), or NaN for no markers.  A value greater than one
      *                      will position the markers outside of the bordering circle.
-     * @param markerFont    The font used for the markers.
+     * //@param markerFont    The font used for the markers.
      */
-    public CompassRose(double scaler, double markerRadius, Font markerFont) {
+    public CompassRose(double scaler, double markerRadius) { //, markerFont font
         this.scaler = scaler;
         this.markerRadius = markerRadius;
-        this.markerFont = markerFont;
+       // this.markerFont = markerFont;
     }
     /**
      * Sets the center position for the compass rose and its size
@@ -281,7 +283,7 @@ public class CompassRose {
 	 */
 	private void drawDirectionMarker(MazePanel panel, int width) {
 		// catch special cases where drawing is not possible
-		if (Double.isNaN(markerRadius) || markerFont == null) 
+		if (Double.isNaN(markerRadius)) // || markerFont == null
 			return;
 		
 		// determine offset from center for position of each string
@@ -297,38 +299,38 @@ public class CompassRose {
 		// WARNING: north south confusion
 		// currendDir South is going upward on the map
 		panel.setColor((CardinalDirection.South == currentDir) ? MARKER_COLOR : goldWM);
-		drawMarker(g2, centerX, centerY - offset, "N");
+		panel.addMarker(centerX, centerY - offset, "N");
 
 		panel.setColor((CardinalDirection.East == currentDir) ? MARKER_COLOR : goldWM);
-		drawMarker(g2, centerX + offset, centerY, "E");
+		panel.addMarker(centerX + offset, centerY, "E");
 
 		// WARNING: north south confusion
 		// currendDir North is going downwards on the map
 		panel.setColor((CardinalDirection.North == currentDir) ? MARKER_COLOR : goldWM);
-		drawMarker(g2, centerX, centerY + offset, "S");
+		panel.addMarker(centerX, centerY + offset, "S");
 
 		panel.setColor((CardinalDirection.West == currentDir) ? MARKER_COLOR : goldWM);
-		drawMarker(g2, centerX - offset, centerY, "W");
+		panel.addMarker(centerX - offset, centerY, "W");
 
 	}
- 
-	/**
-	 * Draws the given string at the given coordinates.
-	 * It uses the field markerFont to determine the font.
-	 * @param g2 The graphics object to draw on
-	 * @param x The x coordinate where to draw
-	 * @param y The y coordinate where to draw
-	 * @param str The string to draw
-	 */
-    private void drawMarker(Graphics2D g2, float x, float y, String str) {
-        GlyphVector gv = markerFont.createGlyphVector(g2.getFontRenderContext(), str);
-        Rectangle2D rect = gv.getVisualBounds();
-        // need to update x, y by half of rectangle width, height
-        // to serve as x, y coordinates for drawing a GlyphVector
-        x -= rect.getWidth() / 2;
-        y += rect.getHeight() / 2;
-        
-        g2.drawGlyphVector(gv, x, y);
-        
-    }
+ //Shouldn't be necessary; MazePanel's addMarker method should replace it
+//	/**
+//	 * Draws the given string at the given coordinates.
+//	 * It uses the field markerFont to determine the font.
+//	 * @param g2 The graphics object to draw on
+//	 * @param x The x coordinate where to draw
+//	 * @param y The y coordinate where to draw
+//	 * @param str The string to draw
+//	 */
+//    private void drawMarker(Graphics2D g2, float x, float y, String str) {
+//        GlyphVector gv = markerFont.createGlyphVector(g2.getFontRenderContext(), str);
+//        Rectangle2D rect = gv.getVisualBounds();
+//        // need to update x, y by half of rectangle width, height
+//        // to serve as x, y coordinates for drawing a GlyphVector
+//        x -= rect.getWidth() / 2;
+//        y += rect.getHeight() / 2;
+//
+//        g2.drawGlyphVector(gv, x, y);
+//
+//    }
 }
