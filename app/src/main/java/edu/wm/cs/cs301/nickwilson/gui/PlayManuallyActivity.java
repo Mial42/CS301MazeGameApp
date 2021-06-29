@@ -62,7 +62,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
         wallsToggle = (ToggleButton)findViewById(R.id.walls_button);
         solutionToggle = (ToggleButton)findViewById(R.id.solution_button);
         mapToggle = (ToggleButton)findViewById(R.id.map_button);
-        shortcutButton = findViewById(R.id.shortcut_button);
+//        shortcutButton = findViewById(R.id.shortcut_button);
 
         leftButton = findViewById(R.id.left_button);
         rightButton = findViewById(R.id.right_button);
@@ -70,20 +70,20 @@ public class PlayManuallyActivity extends AppCompatActivity {
         forwardsButton = findViewById(R.id.forwards_button);
         backwardsButton = findViewById(R.id.back_button);
         //Gives the shortcut button a listener to get to the finish screen
-        shortcutButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //For now, just toast + log
-                String message = "Won the game manually.";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
-                Log.v("PlayAnimationActivity",message);
-                Intent shortcutIntent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
-                shortcutIntent.putExtra("energy", -1);
-                shortcutIntent.putExtra("win", true);
-                shortcutIntent.putExtra("path",-1);
-                startActivity(shortcutIntent);
-            }
-        });
+//        shortcutButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                //For now, just toast + log
+//                String message = "Won the game manually.";
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
+//                Log.v("PlayAnimationActivity",message);
+//                Intent shortcutIntent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
+//                shortcutIntent.putExtra("energy", -1);
+//                shortcutIntent.putExtra("win", true);
+//                shortcutIntent.putExtra("path",-1);
+//                startActivity(shortcutIntent);
+//            }
+//        });
         setToggleListeners();
         setDirectionalListeners();
     }

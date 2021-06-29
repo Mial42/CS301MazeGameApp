@@ -90,11 +90,11 @@ public class GeneratingActivity extends AppCompatActivity {
                     }
                     progressBar.incrementProgressBy(1);
                     Log.v("GenerateMaze Progress Count", "Progress Count: " + progressBar.getProgress());
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+//                    try { //Commented out to save testing time
+//                        Thread.sleep(100);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
                 }
                 if(!stopGeneration) {
                     Intent intent;

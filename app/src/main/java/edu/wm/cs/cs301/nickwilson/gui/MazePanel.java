@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -17,6 +18,11 @@ import edu.wm.cs.cs301.nickwilson.R;
 
 
 public class MazePanel extends View implements P5Panel {
+    /**
+     * Hardcoded height and width for testing/debugging.
+     */
+    private int myHeight = 1200;
+    private int myWidth = 1200;
     /**
      * A bitmap to draw in.
      */
@@ -55,13 +61,28 @@ public class MazePanel extends View implements P5Panel {
      */
     public MazePanel(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        init();
+    }
+
+    /**
+     * Initializes all of my private variables.
+     */
+    private void init(){
 
         myLinePaint = new Paint();
         myFilledPaint = new Paint();
         myFilledPaint.setStyle(Paint.Style.FILL);
-        myBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        Log.v("MazePanel Constructor", "Width: " + getWidth() + "\nHeight: " + getHeight());
+        //myBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        myBitmap = Bitmap.createBitmap(myWidth, myHeight, Bitmap.Config.ARGB_8888);
         myCanvas = new Canvas(myBitmap);
         myPath = new Path();
+    }
+    @Override
+    protected void onDraw(Canvas canvas){
+        super.onDraw(canvas);
+        addBackground(0);
+        canvas.drawBitmap(myBitmap, 0, 0, myFilledPaint);
     }
     /** Takes in color integer values [0-255], returns corresponding color-int
      value. @param integer color values for red green and blue
@@ -76,7 +97,7 @@ public class MazePanel extends View implements P5Panel {
      */
     @Override
     public void commit() {
-        myCanvas.drawBitmap(myBitmap, 0, 0,myFilledPaint);
+        invalidate();
     }
 
     /**
@@ -131,10 +152,10 @@ public class MazePanel extends View implements P5Panel {
         //Color the top rectangle
         setColor(getBackgroundColor(percentToExit, true));
         //Draw the top rectangle
-        addFilledRectangle(0, 0, getWidth(), getHeight() / 2);
+        addFilledRectangle(0, 0, myWidth, myHeight / 2);
         //Color the bottom rectangle
         setColor(getBackgroundColor(percentToExit, false));
-        addFilledRectangle(0, getHeight() / 2, getWidth(), getHeight() / 2);
+        addFilledRectangle(0, myHeight / 2, myWidth, myHeight / 2);
     }
     /**
      * Determine the background color for the top and bottom
