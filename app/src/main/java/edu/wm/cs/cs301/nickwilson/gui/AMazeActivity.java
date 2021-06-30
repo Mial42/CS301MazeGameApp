@@ -15,6 +15,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import edu.wm.cs.cs301.nickwilson.R;
+import edu.wm.cs.cs301.nickwilson.generation.SingleRandom;
 
 public class AMazeActivity extends AppCompatActivity {
     /**
@@ -53,7 +54,10 @@ public class AMazeActivity extends AppCompatActivity {
      * String representing the solution algorithm.
      */
     private String solutionAlgorithm = "Manual";
-
+    /**
+     * A random seed generated for the new Maze.
+     */
+    private int randomSeed;
     /**
      * This method instantiates the various fields and sets them
      * to the appropriate XML components.
@@ -128,6 +132,8 @@ public class AMazeActivity extends AppCompatActivity {
                 i.putExtra("skill", skillLevel);
                 i.putExtra("gener", generationAlgorithm);
                 i.putExtra("solut", solutionAlgorithm);
+                randomSeed = SingleRandom.getRandom().nextInt();
+                i.putExtra("seed", randomSeed);
                 startActivity(i);
             }
         });

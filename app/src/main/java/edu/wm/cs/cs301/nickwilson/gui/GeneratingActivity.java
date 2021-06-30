@@ -42,10 +42,6 @@ public class GeneratingActivity extends AppCompatActivity implements Order {
      */
     private ProgressBar progressBar;
     /**
-     * Background thread that generates the maze
-     */
-    private Thread generateMaze;
-    /**
      * Boolean that tells the generateMaze thread to stop what it's doing.
      * Used for the back button.
      */
@@ -93,6 +89,8 @@ public class GeneratingActivity extends AppCompatActivity implements Order {
             myBuilder = Builder.Kruskal;
         }
         solutionAlgorithm = i.getStringExtra("solut");
+        mySeed = i.getIntExtra("seed", 5);
+        Log.v("GeneratingActivitySeed", "" + mySeed);
         progressBar = (ProgressBar)findViewById(R.id.generating_progress_bar);
         stopGeneration = false;
         generateMaze();
@@ -115,35 +113,6 @@ public class GeneratingActivity extends AppCompatActivity implements Order {
      */
     private void generateMaze(){
         myFactory.order(this);
-//        generateMaze = new Thread(new Runnable() {
-//            public void run() {
-//                for(int i = 0; i < 100; i++){
-//                    if(stopGeneration){
-//                        break;
-//                    }
-//                    progressBar.incrementProgressBy(1);
-//                    Log.v("GenerateMaze Progress Count", "Progress Count: " + progressBar.getProgress());
-////                    try { //Commented out to save testing time
-////                        Thread.sleep(100);
-////                    } catch (InterruptedException e) {
-////                        e.printStackTrace();
-////                    }
-//                }
-//                if(!stopGeneration) {
-//                    Intent intent;
-//
-//                    if ("Manual".equals(solutionAlgorithm)) {
-//                        //Go to PlayManuallyActivity
-//                        intent = new Intent(GeneratingActivity.this, PlayManuallyActivity.class);
-//                    } else {
-//                        //Go to PlayAnimationActivity
-//                        intent = new Intent(GeneratingActivity.this, PlayAnimationActivity.class);
-//                    }
-//                    startActivity(intent);
-//                }
-//            }
-//        });
-//        generateMaze.start();
     }
 
     /**
@@ -187,7 +156,7 @@ public class GeneratingActivity extends AppCompatActivity implements Order {
      */
     @Override
     public int getSeed() {
-        return mySeed; //Hardcoding 13 as my seed
+        return mySeed; //Hardcoding 5 as my default seed
     }
 
     /**
