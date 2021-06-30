@@ -13,6 +13,8 @@ import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
 import edu.wm.cs.cs301.nickwilson.R;
+import edu.wm.cs.cs301.nickwilson.generation.Maze;
+
 public class GeneratingActivity extends AppCompatActivity {
     /**
      * The skill level of the Maze. Can be changed via sizeBar.
@@ -34,7 +36,7 @@ public class GeneratingActivity extends AppCompatActivity {
     /**
      * The ProgressBar that displays the Maze Generation progress (1-100)
      */
-    ProgressBar progressBar;
+    private ProgressBar progressBar;
     /**
      * Background thread that generates the maze
      */
@@ -43,8 +45,12 @@ public class GeneratingActivity extends AppCompatActivity {
      * Boolean that tells the generateMaze thread to stop what it's doing.
      * Used for the back button.
      */
-    boolean stopGeneration;
-
+    private boolean stopGeneration;
+    /**
+     * The Maze that is outputted. Static so that other
+     * activities can reference it.
+     */
+    public static Maze myMaze;
     /**
      * This method retrieves the appropriate data from the previous activity
      * and sets the various fields to the corresponding XML widgets
