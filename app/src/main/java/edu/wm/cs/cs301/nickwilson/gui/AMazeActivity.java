@@ -3,6 +3,7 @@ package edu.wm.cs.cs301.nickwilson.gui;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -59,6 +60,15 @@ public class AMazeActivity extends AppCompatActivity {
      */
     private int randomSeed;
     /**
+     * A SharedPreferences object to store data from previously
+     * generated mazes/
+     */
+    private SharedPreferences myPreferences;
+    /**
+     * An Editor for myPreferences.
+     */
+    private SharedPreferences.Editor myEditor;
+    /**
      * This method instantiates the various fields and sets them
      * to the appropriate XML components.
      * @param savedInstanceState
@@ -84,6 +94,10 @@ public class AMazeActivity extends AppCompatActivity {
         fillSpinners();
         setGenerateNewButtonListener();
         setRevisitOldButtonListener();
+        //Set my Shared Preferences up
+        myPreferences = getApplicationContext().getSharedPreferences("amazebynickwilsonstoredmazes",
+                MODE_PRIVATE);
+        myEditor = myPreferences.edit();
     }
 
     /**
@@ -102,12 +116,21 @@ public class AMazeActivity extends AppCompatActivity {
 //                        Toast.LENGTH_SHORT).show();
                 Log.v("setSizeBarListener",message);
 
-                Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
-                i.putExtra("rooms", roomsButton.isChecked());
-                i.putExtra("skill", skillLevel);
-                i.putExtra("gener", generationAlgorithm);
-                i.putExtra("solut", solutionAlgorithm);
-                startActivity(i);
+                randomSeed = myPreferences.getInt(skillLevel + generationAlgorithm + roomsButton.isChecked(), -1);
+                if(randomSeed == -1){
+                     Toast.makeText(AMazeActivity.this, "You have never created" +
+                                     "a maze with these parameters.",
+                             Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
+                    i.putExtra("rooms", roomsButton.isChecked());
+                    i.putExtra("skill", skillLevel);
+                    i.putExtra("gener", generationAlgorithm);
+                    i.putExtra("solut", solutionAlgorithm);
+                    i.putExtra("seed", randomSeed);
+                    startActivity(i);
+                }
             }
         });
     }
@@ -132,8 +155,13 @@ public class AMazeActivity extends AppCompatActivity {
                 i.putExtra("skill", skillLevel);
                 i.putExtra("gener", generationAlgorithm);
                 i.putExtra("solut", solutionAlgorithm);
-                randomSeed = SingleRandom.getRandom().nextInt();
+                randomSeed = SingleRandom.getRandom().nextIntWithinInterval(0, 100000);
                 i.putExtra("seed", randomSeed);
+                //Write these to the SharedPreferences file
+                //Key is skill level, generation algorithm, and rooms status all string
+                //concatenated
+                myEditor.putInt(skillLevel + generationAlgorithm + roomsButton.isChecked(), randomSeed);
+                myEditor.commit();
                 startActivity(i);
             }
         });
@@ -171,8 +199,8 @@ public class AMazeActivity extends AppCompatActivity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-//                Toast.makeText(AMazeActivity.this, "The skill level is: " + skillLevel,
-//                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(AMazeActivity.this, "The skill level is: " + skillLevel,
+                        Toast.LENGTH_SHORT).show();
                 Log.v("setSizeBarListener","The skill level is: " + skillLevel);
             }
         });
