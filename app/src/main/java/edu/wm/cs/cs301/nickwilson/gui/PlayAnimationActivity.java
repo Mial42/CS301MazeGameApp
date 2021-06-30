@@ -87,8 +87,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 //For now, just toast + log
                 String message = "Path Length: " + pathLength + "\nWin Status: " +
                         won + "\nEnergy Consumed: " + energyConsumed;
-                Toast.makeText(PlayAnimationActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayAnimationActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
                 Intent shortcutIntent = new Intent(PlayAnimationActivity.this, FinishActivity.class);
                 shortcutIntent.putExtra("energy", energyConsumed);
@@ -121,8 +121,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = startPauseButton.getText() + " Clicked";
-                Toast.makeText(PlayAnimationActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayAnimationActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
                 //Swap the strings on the button to change it from start to pause and vice-versa
                 if(startPauseButton.getText().equals("Pause")){
@@ -145,8 +145,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Wall Toggle Clicked";
-                Toast.makeText(PlayAnimationActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayAnimationActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
             }
         });
@@ -156,8 +156,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Solution Toggle Clicked";
-                Toast.makeText(PlayAnimationActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayAnimationActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
             }
         });
@@ -167,8 +167,8 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Map Toggle Clicked";
-                Toast.makeText(PlayAnimationActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayAnimationActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
             }
         });

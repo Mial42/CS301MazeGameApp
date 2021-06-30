@@ -76,8 +76,8 @@ public class FinishActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //For now, just toast + log
                 String message = "Restart Button Clicked";
-                Toast.makeText(FinishActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(FinishActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
                 Intent goHome = new Intent(FinishActivity.this, AMazeActivity.class);
                 startActivity(goHome);

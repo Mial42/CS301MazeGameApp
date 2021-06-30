@@ -94,8 +94,8 @@ public class AMazeActivity extends AppCompatActivity {
                 String message = "Skill Level: " + skillLevel + "\nGeneration Algorithm: " +
                         generationAlgorithm + "\nSolution Algorithm: " + solutionAlgorithm
                         + "\nRooms Status: " + roomsButton.isChecked();
-                Toast.makeText(AMazeActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AMazeActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("setSizeBarListener",message);
 
                 Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
@@ -119,8 +119,8 @@ public class AMazeActivity extends AppCompatActivity {
                 String message = "Skill Level: " + skillLevel + "\nGeneration Algorithm: " +
                         generationAlgorithm + "\nSolution Algorithm: " + solutionAlgorithm
                         + "\nRooms Status: " + roomsButton.isChecked();
-                Toast.makeText(AMazeActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AMazeActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("setSizeBarListener",message);
 
                 Intent i = new Intent(AMazeActivity.this, GeneratingActivity.class);
@@ -165,8 +165,8 @@ public class AMazeActivity extends AppCompatActivity {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(AMazeActivity.this, "The skill level is: " + skillLevel,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AMazeActivity.this, "The skill level is: " + skillLevel,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("setSizeBarListener","The skill level is: " + skillLevel);
             }
         });
@@ -182,8 +182,8 @@ public class AMazeActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 generationAlgorithm = parent.getItemAtPosition(position).toString();
-                Toast.makeText(AMazeActivity.this, "The generation algorithm is: " + generationAlgorithm,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AMazeActivity.this, "The generation algorithm is: " + generationAlgorithm,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("setSpinnerListeners","The generation algorithm is: " + generationAlgorithm);
             }
             public void onNothingSelected(AdapterView<?> parent)
@@ -202,8 +202,8 @@ public class AMazeActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
             {
                 solutionAlgorithm = parent.getItemAtPosition(position).toString();
-                Toast.makeText(AMazeActivity.this, "The solution algorithm is: " + solutionAlgorithm,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(AMazeActivity.this, "The solution algorithm is: " + solutionAlgorithm,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("setSpinnerListeners","The solution algorithm is: " + solutionAlgorithm);
             }
             public void onNothingSelected(AdapterView<?> parent)

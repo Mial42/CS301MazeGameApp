@@ -104,8 +104,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Wall Toggle Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
@@ -115,8 +115,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Solution Toggle Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
@@ -126,8 +126,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Map Toggle Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
@@ -144,8 +144,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Left Button Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
@@ -155,8 +155,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Right Button Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
@@ -166,8 +166,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Forwards Button Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
@@ -177,8 +177,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Jump Button Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
@@ -188,8 +188,8 @@ public class PlayManuallyActivity extends AppCompatActivity {
                 //Going to add functionality here for P5
                 //For now, just toast + log
                 String message = "Back Button Clicked";
-                Toast.makeText(PlayManuallyActivity.this, message,
-                        Toast.LENGTH_SHORT).show();
+//                Toast.makeText(PlayManuallyActivity.this, message,
+//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
             }
         });
