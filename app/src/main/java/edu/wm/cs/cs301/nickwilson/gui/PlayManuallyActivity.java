@@ -86,6 +86,12 @@ public class PlayManuallyActivity extends AppCompatActivity {
 //        });
         setToggleListeners();
         setDirectionalListeners();
+        Log.v("Does info transfer?", GeneratingActivity.myMaze.toString());
+        Log.v("Does info transfer?", "Height: " + GeneratingActivity.myMaze.getHeight());
+        Log.v("Does info transfer?", "Width: " + GeneratingActivity.myMaze.getWidth());
+        Log.v("Does info transfer?", "Starting Position: (" +
+                GeneratingActivity.myMaze.getStartingPosition()[0] + ", " +
+                GeneratingActivity.myMaze.getStartingPosition()[1] + ")");
     }
     /**
      * This method sets up the various listeners for the toggles at the top of the screen.
