@@ -201,7 +201,6 @@ public class GeneratingActivity extends AppCompatActivity implements Order {
      */
     @Override
     public void deliver(Maze mazeConfig) {
-        myFactory.waitTillDelivered();
         myMaze = mazeConfig;
         if(!stopGeneration) { //Start the next activity when the Maze is delivered
             Intent intent;
