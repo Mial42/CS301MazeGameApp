@@ -26,9 +26,9 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
      */
     private  ToggleButton mapToggle;
     /**
-     * Shortcut to the finish screen
+     * StatePlaying to encapsulate actually playing the game
      */
-    private Button shortcutButton;
+    private StatePlaying myStatePlaying;
     /**
      * Button to move left
      */
@@ -49,7 +49,10 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
      * Button to jump
      */
     private Button jumpButton;
-
+    /**
+     * The MazePanel that actually draws what needs to be drawn
+     */
+    private MazePanel myMazePanel;
     /**
      * This method instantiates the various fields and sets them to the
      * appropriate XML components. Also sets the various listeners for the buttons.
@@ -62,13 +65,18 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
         wallsToggle = (ToggleButton)findViewById(R.id.walls_button);
         solutionToggle = (ToggleButton)findViewById(R.id.solution_button);
         mapToggle = (ToggleButton)findViewById(R.id.map_button);
-//        shortcutButton = findViewById(R.id.shortcut_button);
 
         leftButton = findViewById(R.id.left_button);
         rightButton = findViewById(R.id.right_button);
         jumpButton = findViewById(R.id.jump_button);
         forwardsButton = findViewById(R.id.forwards_button);
         backwardsButton = findViewById(R.id.back_button);
+
+        myMazePanel = findViewById(R.id.maze_panel);
+        //Instantiate myStatePlaying and pass the needed variables
+        myStatePlaying = new StatePlaying();
+        myStatePlaying.setMazeConfiguration(GeneratingActivity.myMaze);
+        myStatePlaying.start(myMazePanel, this);
 
         setToggleListeners();
         setDirectionalListeners();
@@ -84,37 +92,28 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
      * For now, just displays Toasts and Logs data, but for P5 will do things.
      */
     private void setToggleListeners(){
-        //Make wallToggle a listener, so I can add the required functionality for P5
+        //Make wallToggle a listener to call the appropriate StatePlaying method
         wallsToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Wall Toggle Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.TOGGLELOCALMAP, 0);
             }
         });
-        //Make solutionToggle a listener, so I can add the required functionality for P5
+        //Make solutionToggle a listener to call the appropriate StatePlaying method
         solutionToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Solution Toggle Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.TOGGLESOLUTION, 0);
             }
         });
-        //Make mapToggle a listener, so I can add the required functionality for P5
+        //Make mapToggle a listener to call the appropriate StatePlaying method
         mapToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Map Toggle Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.TOGGLEFULLMAP, 0);
             }
         });
     }
@@ -124,59 +123,44 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
      */
     private void setDirectionalListeners(){
 
-        //Make leftButton a listener, so I can add the required functionality for P5
+        //Make leftButton a listener to call the appropriate StatePlaying method
         leftButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Left Button Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.LEFT, 0);
             }
         });
-        //Make rightButton a listener, so I can add the required functionality for P5
+        //Make rightButton a listener to call the appropriate StatePlaying method
         rightButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Right Button Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.RIGHT, 0);
             }
         });
-        //Make forwards button a listener, so I can add the required functionality for P5
+        //Make forwards button a listener to call the appropriate StatePlaying method
         forwardsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Forwards Button Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.UP, 0);
             }
         });
-        //Make jump button a listener, so I can add the required functionality for P5
+        //Make jump button a listener to call the appropriate StatePlaying method
         jumpButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Jump Button Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.JUMP, 0);
             }
         });
-        //Make backwards button a listener, so I can add the required functionality for P5
+        //Make backwards button a listener to call the appropriate StatePlaying method
         backwardsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Back Button Clicked";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayManuallyActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.DOWN, 0);
             }
         });
     }
