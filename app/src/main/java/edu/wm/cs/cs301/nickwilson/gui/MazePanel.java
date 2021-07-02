@@ -214,10 +214,10 @@ public class MazePanel extends View implements P5Panel {
     public void addFilledPolygon(int[] xPoints, int[] yPoints, int nPoints) {
         Log.v("MazePanel.addFilledPolygon", "addFilledPolygon called");
         Log.v("MazePanel.getColor", getColor() + "");
+        myPath.reset();//Reset myPath to avoid carrying over data from previous draws
         if(nPoints < 2){
             return;//To avoid errors
         }
-        myPath.reset();//Reset myPath to avoid carrying over data from previous draws
         myPath.moveTo(xPoints[0], yPoints[0]);
         Log.v("myPath.moveTo", "[" + xPoints[0] + ", " + yPoints[0] + "]");
         for(int i = 0; i < nPoints; i++){ //Add every point to the path
@@ -227,6 +227,7 @@ public class MazePanel extends View implements P5Panel {
         Log.v("myPath.lineTo", "[" + xPoints[0] + ", " + yPoints[0] + "]");
         myPath.lineTo(xPoints[0], yPoints[0]); //Close out the path by returning to the start
         myCanvas.drawPath(myPath, myFilledPaint);
+
         Log.v("Bitmap: ", myBitmap.toString());
     }
 
