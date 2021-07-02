@@ -98,7 +98,7 @@ public class StatePlaying  { //extends DefaultState
         // configure compass rose
         cr = new CompassRose();
         cr.setPositionAndSize(Constants.VIEW_WIDTH/2,
-        		(int)(0.1*Constants.VIEW_HEIGHT),35);
+        		(int)(0.1*Constants.VIEW_HEIGHT),105); //Set size to 105
 
         if (panel != null) {
         	startDrawer();
@@ -122,7 +122,7 @@ public class StatePlaying  { //extends DefaultState
 		firstPersonView = new FirstPersonView(Constants.VIEW_WIDTH,
 				Constants.VIEW_HEIGHT, Constants.MAP_UNIT,
 				Constants.STEP_SIZE, seenCells, mazeConfig.getRootnode(), activity.getMazePanel()) ;
-		mapView = new Map(seenCells, 15, mazeConfig) ;
+		mapView = new Map(seenCells, 100, mazeConfig) ; //Mapscale originally 15
 		// draw the initial screen for this state
 		draw();
 	}

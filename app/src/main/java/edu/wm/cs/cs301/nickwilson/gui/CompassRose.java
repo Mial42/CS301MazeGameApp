@@ -23,8 +23,8 @@ public class CompassRose {
 	
 	// fixed configuration for arms
     private static final int MAIN_COLOR = greenWM; //new Color(0.4f, 0.4f, 1.0f);
-    private static final float MAIN_LENGTH = 0.95f;
-    private static final float MAIN_WIDTH = 0.15f;
+    private static final float MAIN_LENGTH = 0.95f; //0.95f
+    private static final float MAIN_WIDTH = 0.15f; //0.15f
     
     // fixed configuration for circle surrounding arms
     private static final int CIRCLE_BORDER = 2;
@@ -63,7 +63,7 @@ public class CompassRose {
      * Construct a compass rose with the default settings.
      */
     public CompassRose() {
-        this(0.9, 1.7
+        this(0.9, 1.7 //0.9, 1.7
 				//,Font.decode("Serif-PLAIN-16")
 		);
     }

@@ -70,8 +70,10 @@ public class MazePanel extends View implements P5Panel {
     private void init(){
 
         myLinePaint = new Paint();
+        myLinePaint.setStrokeWidth(8);
         myFilledPaint = new Paint();
         myFilledPaint.setStyle(Paint.Style.FILL);
+        myFilledPaint.setTextSize(50);
         Log.v("MazePanel Constructor", "Width: " + getWidth() + "\nHeight: " + getHeight());
         //myBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         myBitmap = Bitmap.createBitmap(myWidth, myHeight, Bitmap.Config.ARGB_8888);
@@ -81,6 +83,7 @@ public class MazePanel extends View implements P5Panel {
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
+        canvas.drawBitmap(myBitmap, 0, 0, myFilledPaint);
     }
     /** Takes in color integer values [0-255], returns corresponding color-int
      value. @param integer color values for red green and blue
@@ -208,14 +211,16 @@ public class MazePanel extends View implements P5Panel {
      */
     @Override
     public void addFilledPolygon(int[] xPoints, int[] yPoints, int nPoints) {
+        Log.v("MazePanel.addFilledPolygon", "addFilledPolygon called");
+        Log.v("MazePanel.getColor", getColor() + "");
         if(nPoints < 2){
             return;//To avoid errors
         }
         myPath.reset();//Reset myPath to avoid carrying over data from previous draws
         for(int i = 0; i < nPoints; i++){ //Add every point to the path
-            myPath.moveTo(xPoints[i], yPoints[i]);
+            myPath.lineTo(xPoints[i], yPoints[i]); //moveTo replaced with lineTo
         }
-        myPath.moveTo(xPoints[0], yPoints[0]); //Close out the path by returning to the start
+        myPath.lineTo(xPoints[0], yPoints[0]); //Close out the path by returning to the start
         myCanvas.drawPath(myPath, myFilledPaint);
     }
 
@@ -237,15 +242,15 @@ public class MazePanel extends View implements P5Panel {
      */
     @Override
     public void addPolygon(int[] xPoints, int[] yPoints, int nPoints) {
-        if(nPoints < 2){ //To avoid IndexOutOfBoundsExceptions
-            return;
+        if(nPoints < 2){
+            return;//To avoid errors
         }
-        addLine(xPoints[nPoints - 1], yPoints[nPoints - 1], xPoints[0], yPoints[0]);
-        //Draw a line between the last point and the first point
-        for(int i = 0; i < nPoints - 1; i++){ //Draw lines between the other
-            //pairs of adjacent points
-            addLine(xPoints[i], yPoints[i], xPoints[i + 1], yPoints[i + 1]);
+        myPath.reset();//Reset myPath to avoid carrying over data from previous draws
+        for(int i = 0; i < nPoints; i++){ //Add every point to the path
+            myPath.lineTo(xPoints[i], yPoints[i]); //moveTo replaced with lineTo
         }
+        myPath.lineTo(xPoints[0], yPoints[0]); //Close out the path by returning to the start
+        myCanvas.drawPath(myPath, myLinePaint);
     }
 
     /**
@@ -325,6 +330,6 @@ public class MazePanel extends View implements P5Panel {
      */
     @Override
     public void addMarker(float x, float y, String str) {
-       myCanvas.drawText(str, x, y, myLinePaint);
+       myCanvas.drawText(str, x, y, myFilledPaint);
     }
 }
