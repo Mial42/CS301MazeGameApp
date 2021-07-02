@@ -21,8 +21,8 @@ public class MazePanel extends View implements P5Panel {
     /**
      * Hardcoded height and width for testing/debugging.
      */
-    private int myHeight = 1200;
-    private int myWidth = 1200;
+    private int myHeight = Constants.VIEW_HEIGHT;
+    private int myWidth = Constants.VIEW_WIDTH;
     /**
      * A bitmap to draw in.
      */
@@ -74,6 +74,7 @@ public class MazePanel extends View implements P5Panel {
         myFilledPaint = new Paint();
         myFilledPaint.setStyle(Paint.Style.FILL);
         myFilledPaint.setTextSize(50);
+        //myFilledPaint.setStrokeWidth(4);
         Log.v("MazePanel Constructor", "Width: " + getWidth() + "\nHeight: " + getHeight());
         //myBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         myBitmap = Bitmap.createBitmap(myWidth, myHeight, Bitmap.Config.ARGB_8888);
@@ -83,7 +84,7 @@ public class MazePanel extends View implements P5Panel {
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        canvas.drawBitmap(myBitmap, 0, 0, myFilledPaint);
+        canvas.drawBitmap(myBitmap, 0, 0, null);
     }
     /** Takes in color integer values [0-255], returns corresponding color-int
      value. @param integer color values for red green and blue
@@ -217,11 +218,16 @@ public class MazePanel extends View implements P5Panel {
             return;//To avoid errors
         }
         myPath.reset();//Reset myPath to avoid carrying over data from previous draws
+        myPath.moveTo(xPoints[0], yPoints[0]);
+        Log.v("myPath.moveTo", "[" + xPoints[0] + ", " + yPoints[0] + "]");
         for(int i = 0; i < nPoints; i++){ //Add every point to the path
             myPath.lineTo(xPoints[i], yPoints[i]); //moveTo replaced with lineTo
+            Log.v("myPath.lineTo", "[" + xPoints[i] + ", " + yPoints[i] + "]");
         }
+        Log.v("myPath.lineTo", "[" + xPoints[0] + ", " + yPoints[0] + "]");
         myPath.lineTo(xPoints[0], yPoints[0]); //Close out the path by returning to the start
         myCanvas.drawPath(myPath, myFilledPaint);
+        Log.v("Bitmap: ", myBitmap.toString());
     }
 
     /**
@@ -246,6 +252,7 @@ public class MazePanel extends View implements P5Panel {
             return;//To avoid errors
         }
         myPath.reset();//Reset myPath to avoid carrying over data from previous draws
+        myPath.moveTo(xPoints[0], yPoints[0]);
         for(int i = 0; i < nPoints; i++){ //Add every point to the path
             myPath.lineTo(xPoints[i], yPoints[i]); //moveTo replaced with lineTo
         }
