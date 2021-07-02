@@ -130,8 +130,9 @@ public class FirstPersonView {
 	 * @param stepSize size of steps
 	 * @param seenWalls to store which walls were put on display
 	 * @param bspRoot the root node of the bsp tree
+	 * @param panel the MazePanel used for drawing
 	 */
-	public FirstPersonView(int width, int height, int mapUnit, int stepSize, Floorplan seenWalls, BSPNode bspRoot) {
+	public FirstPersonView(int width, int height, int mapUnit, int stepSize, Floorplan seenWalls, BSPNode bspRoot, MazePanel panel) {
 		// store given parameter values
 		viewWidth = width;
 		viewHeight = height;
@@ -144,6 +145,7 @@ public class FirstPersonView {
 		scaleZ = viewHeight/2;
 		// initialize fields
 		rSet = new RangeSet();
+		mp = panel;
 	}
 	/**
 	 * Draws the first person view on the screen during the game

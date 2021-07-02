@@ -188,4 +188,8 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
         shortcutIntent.putExtra("path",pathLength);
         startActivity(shortcutIntent);
     }
+    @Override
+    public MazePanel getMazePanel(){
+        return null; //TODO fix this
+    }
 }

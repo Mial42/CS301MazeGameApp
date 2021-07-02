@@ -189,4 +189,8 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
         shortcutIntent.putExtra("path",-1);
         startActivity(shortcutIntent);
     }
+    @Override
+    public MazePanel getMazePanel(){
+        return myMazePanel;
+    }
 }
