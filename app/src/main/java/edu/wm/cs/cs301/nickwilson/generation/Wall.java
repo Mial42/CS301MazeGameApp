@@ -2,6 +2,7 @@ package edu.wm.cs.cs301.nickwilson.generation;
 
 //import java.awt.Color;
 import android.graphics.Color;
+import android.util.Log;
 
 import java.util.List;
 
@@ -152,6 +153,8 @@ public class Wall {
         // mod used to limit the number of colors to 6
         final int rgbValue = calculateRGBValue(d);
         //System.out.println("Initcolor rgb: " + rgbValue);
+        Log.v("Wall.createColor", "Distance: " + distance + "" +
+                "\nCC: " + cc);
         switch (((d >> 3) ^ cc) % 6) {
         case 0:
             //return(new Color(rgbValue, RGB_DEF, RGB_DEF));

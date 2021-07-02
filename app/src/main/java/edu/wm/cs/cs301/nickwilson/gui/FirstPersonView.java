@@ -4,6 +4,7 @@
 package edu.wm.cs.cs301.nickwilson.gui;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import java.util.List;
 
@@ -486,6 +487,7 @@ public class FirstPersonView {
 		// moved code for drawing bits and pieces into yet another method to 
 		// gain more clarity on what information is actually needed
 		//gc.setColor(wall.getColor());
+		Log.v("FirstPersonView.drawWall", "Wall Color: " + wall.getColor());
 		mp.setColor(wall.getColor());
 		boolean drawn = drawPolygons(x1, x2, y11, y12, y21, y22);
 		

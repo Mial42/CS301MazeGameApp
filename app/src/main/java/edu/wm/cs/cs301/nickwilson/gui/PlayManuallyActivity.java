@@ -73,6 +73,7 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
         backwardsButton = findViewById(R.id.back_button);
 
         myMazePanel = findViewById(R.id.maze_panel);
+        Log.v("TroubleWithMazePanel", "MazePanel: " + myMazePanel);
         //Instantiate myStatePlaying and pass the needed variables
         myStatePlaying = new StatePlaying();
         myStatePlaying.setMazeConfiguration(GeneratingActivity.myMaze);

@@ -123,6 +123,7 @@ public class MazePanel extends View implements P5Panel {
      */
     @Override
     public void setColor(int rgb) {
+        Log.v("MazePanel.setColor", "Color: " + rgb);
         myFilledPaint.setColor(rgb);
         myLinePaint.setColor(rgb);
     }
