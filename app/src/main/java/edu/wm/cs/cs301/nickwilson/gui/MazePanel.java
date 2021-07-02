@@ -81,8 +81,6 @@ public class MazePanel extends View implements P5Panel {
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
-        addBackground(0);
-        canvas.drawBitmap(myBitmap, 0, 0, myFilledPaint);
     }
     /** Takes in color integer values [0-255], returns corresponding color-int
      value. @param integer color values for red green and blue
