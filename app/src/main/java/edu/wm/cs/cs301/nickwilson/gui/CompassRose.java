@@ -290,7 +290,7 @@ public class CompassRose {
 		// the overall arrangement is symmetric so each letter is 
 		// the same distance away from the center of the compass rose
 		int offset = (int) (width * markerRadius / 2);
-
+		//int offset = 0;
 		/* version with color highlighting but stable orientation 
 		 * so North is always on top, highlight the current direction.
 		 * Highlighting with MarkerColor
@@ -299,18 +299,18 @@ public class CompassRose {
 		// WARNING: north south confusion
 		// currendDir South is going upward on the map
 		panel.setColor((CardinalDirection.South == currentDir) ? MARKER_COLOR : goldWM);
-		panel.addMarker(centerX, centerY - offset, "N");
+		panel.addMarker(centerX - 15, centerY + 20 - offset, "N");
 
 		panel.setColor((CardinalDirection.East == currentDir) ? MARKER_COLOR : goldWM);
-		panel.addMarker(centerX + offset, centerY, "E");
+		panel.addMarker(centerX - 20 + offset, centerY + 20, "E");
 
 		// WARNING: north south confusion
 		// currendDir North is going downwards on the map
 		panel.setColor((CardinalDirection.North == currentDir) ? MARKER_COLOR : goldWM);
-		panel.addMarker(centerX, centerY + offset, "S");
+		panel.addMarker(centerX - 15, centerY + 20 + offset, "S");
 
 		panel.setColor((CardinalDirection.West == currentDir) ? MARKER_COLOR : goldWM);
-		panel.addMarker(centerX - offset, centerY, "W");
+		panel.addMarker(centerX - 20 - offset, centerY + 20, "W");
 
 	}
  //Shouldn't be necessary; MazePanel's addMarker method should replace it
