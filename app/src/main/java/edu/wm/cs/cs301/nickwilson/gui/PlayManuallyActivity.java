@@ -12,7 +12,7 @@ import android.widget.ToggleButton;
 
 import edu.wm.cs.cs301.nickwilson.R;
 
-public class PlayManuallyActivity extends AppCompatActivity {
+public class PlayManuallyActivity extends AppCompatActivity implements PlayingActivity {
     /**
      * Toggles visible walls
      */
@@ -69,21 +69,7 @@ public class PlayManuallyActivity extends AppCompatActivity {
         jumpButton = findViewById(R.id.jump_button);
         forwardsButton = findViewById(R.id.forwards_button);
         backwardsButton = findViewById(R.id.back_button);
-        //Gives the shortcut button a listener to get to the finish screen
-//        shortcutButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                //For now, just toast + log
-//                String message = "Won the game manually.";
-//                Toast.makeText(PlayManuallyActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
-//                Log.v("PlayAnimationActivity",message);
-//                Intent shortcutIntent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
-//                shortcutIntent.putExtra("energy", -1);
-//                shortcutIntent.putExtra("win", true);
-//                shortcutIntent.putExtra("path",-1);
-//                startActivity(shortcutIntent);
-//            }
-//        });
+
         setToggleListeners();
         setDirectionalListeners();
         Log.v("Does info transfer?", GeneratingActivity.myMaze.toString());
@@ -202,5 +188,20 @@ public class PlayManuallyActivity extends AppCompatActivity {
         Log.v("Back Press PlayManuallyActivity", "Back Press Called");
         Intent goHome = new Intent(PlayManuallyActivity.this, AMazeActivity.class);
         startActivity(goHome);
+    }
+
+    /**
+     * Moves the app to the finish screen.
+     */
+    @Override
+    public void moveToFinishScreen() {
+        String message = "Won the game manually.";
+
+        Log.v("PlayAnimationActivity",message);
+        Intent shortcutIntent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
+        shortcutIntent.putExtra("energy", -1);
+        shortcutIntent.putExtra("win", true);
+        shortcutIntent.putExtra("path",-1);
+        startActivity(shortcutIntent);
     }
 }

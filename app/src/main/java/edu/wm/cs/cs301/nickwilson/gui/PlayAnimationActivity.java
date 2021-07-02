@@ -13,7 +13,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import edu.wm.cs.cs301.nickwilson.R;
-public class PlayAnimationActivity extends AppCompatActivity {
+public class PlayAnimationActivity extends AppCompatActivity implements PlayingActivity{
     /**
      * Toggles visible walls
      */
@@ -172,5 +172,20 @@ public class PlayAnimationActivity extends AppCompatActivity {
                 Log.v("PlayAnimationActivity",message);
             }
         });
+    }
+
+    /**
+     * Moves the app to the finish screen.
+     */
+    @Override
+    public void moveToFinishScreen() {
+        String message = "Path Length: " + pathLength + "\nWin Status: " +
+                won + "\nEnergy Consumed: " + energyConsumed;
+        Log.v("PlayAnimationActivity",message);
+        Intent shortcutIntent = new Intent(PlayAnimationActivity.this, FinishActivity.class);
+        shortcutIntent.putExtra("energy", energyConsumed);
+        shortcutIntent.putExtra("win", won);
+        shortcutIntent.putExtra("path",pathLength);
+        startActivity(shortcutIntent);
     }
 }
