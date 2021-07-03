@@ -97,6 +97,13 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
         setStartPauseButtonListener();
         setToggleListeners();
 
+        myRobot = new BasicRobot();
+        if(GeneratingActivity.solutionAlgorithm.equals("Wizard")){
+            myRobotDriver = new Wizard();
+        }
+        else{ //WallFollower
+            myRobotDriver = new WallFollower();
+        }
         myStatePlaying = new StatePlaying();
         myStatePlaying.setMazeConfiguration(GeneratingActivity.myMaze);
         myStatePlaying.start(myMazePanel, this);

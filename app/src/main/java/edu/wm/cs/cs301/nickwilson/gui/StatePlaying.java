@@ -259,6 +259,8 @@ public class StatePlaying  { //extends DefaultState
     	//Finish setting up the Robot and RobotDriver so they work
     	activity.getRobotDriver().setRobot(activity.getRobot());//Make sure the Robot and Driver are connected
     	activity.getRobotDriver().setMaze(mazeConfig); //Set the RobotDriver's Maze correctly
+        activity.getRobot().setStatePlaying(this);
+        activity.getRobot().setPlayingActivity(activity);
     	//Add new BasicSensors to the robot
         activity.getRobot().addDistanceSensor(new BasicSensor(), Robot.Direction.FORWARD);
         activity.getRobot().addDistanceSensor(new BasicSensor(), Robot.Direction.BACKWARD);

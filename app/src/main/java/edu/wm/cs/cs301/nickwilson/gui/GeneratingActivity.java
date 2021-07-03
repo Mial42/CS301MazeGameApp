@@ -30,8 +30,9 @@ public class GeneratingActivity extends AppCompatActivity implements Order {
     private String generationAlgorithm;
     /**
      * String representing the solution algorithm.
+     * Static so that PlayAnimationActivity can reference it.
      */
-    private String solutionAlgorithm;
+    public static String solutionAlgorithm;
 
     /**
      * Boolean representing rooms status of the maze
