@@ -181,6 +181,14 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
         shortcutIntent.putExtra("path",pathLength);
         startActivity(shortcutIntent);
     }
+
+    /**
+     *
+     * @param win (have you won the game)
+     */
+    public void setWon(boolean win){
+        won = win;
+    }
     @Override
     public MazePanel getMazePanel(){
         return myMazePanel;
@@ -201,7 +209,7 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
         pathLengthText.setText("Path Length: " +  pathLength);
         energyText.setText("Energy Consumed: " + energyConsumed);
         if(myRobot.isAtExit()){
-            won = true;
+            setWon(true);
         }
     }
     /**

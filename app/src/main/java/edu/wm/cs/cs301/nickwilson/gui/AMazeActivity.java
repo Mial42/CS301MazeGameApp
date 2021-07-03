@@ -118,7 +118,7 @@ public class AMazeActivity extends AppCompatActivity {
 
                 randomSeed = myPreferences.getInt(skillLevel + generationAlgorithm + roomsButton.isChecked(), -1);
                 if(randomSeed == -1){
-                     Toast.makeText(AMazeActivity.this, "You have never created" +
+                     Toast.makeText(AMazeActivity.this, "You have never created " +
                                      "a maze with these parameters.",
                              Toast.LENGTH_SHORT).show();
                 }

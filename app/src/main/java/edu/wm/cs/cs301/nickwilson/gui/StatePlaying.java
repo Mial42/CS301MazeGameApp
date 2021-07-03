@@ -281,6 +281,7 @@ public class StatePlaying  { //extends DefaultState
     		//System.out.println(control.getRobot().getBatteryLevel());
             activity.getRobotDriver().drive2Exit();
     		//System.out.println("Automated Win");
+            ((PlayAnimationActivity)activity).setWon(true);
     		activity.moveToFinishScreen();
     	}catch (Exception e) { //Exception happens if you run out of power
 			//If you run out of power, swap to the winning state
@@ -288,6 +289,8 @@ public class StatePlaying  { //extends DefaultState
     		//Will also need to move over my energy consumption data
     		//System.out.println("Automated Loss");
     		//System.out.println(control.getRobot().getBatteryLevel());
+            activity.getRobot().setBatteryLevel(0); //Because it looks weird to have 2 energy left
+            activity.update();
             activity.moveToFinishScreen();
 		}
     }
