@@ -152,6 +152,7 @@ public class MazePanel extends View implements P5Panel {
      */
     @Override
     public void addBackground(float percentToExit) {
+        Log.v("MazePanel.addBackground", "addBackground called");
         //Color the top rectangle
         setColor(getBackgroundColor(percentToExit, true));
         //Draw the top rectangle

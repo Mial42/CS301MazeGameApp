@@ -155,29 +155,30 @@ public class Wall {
         //System.out.println("Initcolor rgb: " + rgbValue);
         Log.v("Wall.createColor", "Distance: " + distance + "" +
                 "\nCC: " + cc);
-        switch (((d >> 3) ^ cc) % 6) {
-        case 0:
-            //return(new Color(rgbValue, RGB_DEF, RGB_DEF));
-            return (rgbValue << 16 | RGB_DEF << 8 | RGB_DEF);
-        case 1:
-        	//return(new Color(RGB_DEF, RGB_DEF_GREEN, RGB_DEF));
-            return (RGB_DEF << 16 | RGB_DEF_GREEN << 8 | RGB_DEF);
-        case 2:
-        	//return(new Color(RGB_DEF, RGB_DEF, rgbValue));
-            return (RGB_DEF << 16 | RGB_DEF << 8 | rgbValue);
-        case 3:
-        	//return(new Color(rgbValue, RGB_DEF_GREEN, RGB_DEF));
-            return (rgbValue << 16 | RGB_DEF_GREEN << 8 | RGB_DEF);
-        case 4:
-        	//return(new Color(RGB_DEF, RGB_DEF_GREEN, rgbValue));
-            return (RGB_DEF << 16 | RGB_DEF_GREEN << 8 | rgbValue);
-        case 5:
-        	//return(new Color(rgbValue, RGB_DEF, rgbValue));
-            return (rgbValue << 16 | RGB_DEF << 8 | rgbValue);
-        default:
-        //	return(new Color(RGB_DEF, RGB_DEF, RGB_DEF));
-            return (RGB_DEF << 16 | RGB_DEF << 8 | RGB_DEF);
-        }
+        return Color.RED;
+//        switch (((d >> 3) ^ cc) % 6) {
+//        case 0:
+//            //return(new Color(rgbValue, RGB_DEF, RGB_DEF));
+//            return (rgbValue << 16 | RGB_DEF << 8 | RGB_DEF);
+//        case 1:
+//        	//return(new Color(RGB_DEF, RGB_DEF_GREEN, RGB_DEF));
+//            return (RGB_DEF << 16 | RGB_DEF_GREEN << 8 | RGB_DEF);
+//        case 2:
+//        	//return(new Color(RGB_DEF, RGB_DEF, rgbValue));
+//            return (RGB_DEF << 16 | RGB_DEF << 8 | rgbValue);
+//        case 3:
+//        	//return(new Color(rgbValue, RGB_DEF_GREEN, RGB_DEF));
+//            return (rgbValue << 16 | RGB_DEF_GREEN << 8 | RGB_DEF);
+//        case 4:
+//        	//return(new Color(RGB_DEF, RGB_DEF_GREEN, rgbValue));
+//            return (RGB_DEF << 16 | RGB_DEF_GREEN << 8 | rgbValue);
+//        case 5:
+//        	//return(new Color(rgbValue, RGB_DEF, rgbValue));
+//            return (rgbValue << 16 | RGB_DEF << 8 | rgbValue);
+//        default:
+//        //	return(new Color(RGB_DEF, RGB_DEF, RGB_DEF));
+//            return (RGB_DEF << 16 | RGB_DEF << 8 | RGB_DEF);
+//        }
     }
 
     /**

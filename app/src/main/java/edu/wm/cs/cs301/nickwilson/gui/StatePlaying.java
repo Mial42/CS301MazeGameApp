@@ -121,7 +121,7 @@ public class StatePlaying  { //extends DefaultState
 	protected void startDrawer() {
 		firstPersonView = new FirstPersonView(Constants.VIEW_WIDTH,
 				Constants.VIEW_HEIGHT, Constants.MAP_UNIT,
-				Constants.STEP_SIZE, seenCells, mazeConfig.getRootnode(), activity.getMazePanel()) ;
+				Constants.STEP_SIZE, seenCells, mazeConfig.getRootnode(), panel) ;
 		mapView = new Map(seenCells, 100, mazeConfig) ; //Mapscale originally 15
 		// draw the initial screen for this state
 		draw();
