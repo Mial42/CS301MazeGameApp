@@ -27,10 +27,6 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
      */
     private  ToggleButton mapToggle;
     /**
-     * Shortcut to the finish screen
-     */
-    private Button shortcutButton;
-    /**
      * Energy text showing how much energy has been consumed
      */
     private TextView energyText;
@@ -45,7 +41,7 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
     /**
      * Text View displaying the path length
      */
-    private  TextView pathLengthText;
+    private TextView pathLengthText;
     /**
      * Boolean representing the "won" status of the game.
      */
@@ -54,7 +50,14 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
      * int recording the total energy consumed
      */
     private int energyConsumed = 0;
-
+    /**
+     * A MazePanel to hold the graphics for the game
+     */
+    private MazePanel myMazePanel;
+    /**
+     * A StatePlaying to actually play the game
+     */
+    private StatePlaying myStatePlaying;
     /**
      * This method instantiates the various fields and sets them to the corresponding
      * XML components. It also sets up the various listeners for the various buttons.
@@ -66,10 +69,10 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
         setContentView(R.layout.activity_play_animation);
         //Sets the various fields to the XML components and
         //sets appropriate texts
+        myMazePanel = findViewById(R.id.maze_panel);
         wallsToggle = (ToggleButton)findViewById(R.id.walls_button);
         solutionToggle = (ToggleButton)findViewById(R.id.solution_button);
         mapToggle = (ToggleButton)findViewById(R.id.map_button);
-        shortcutButton = findViewById(R.id.shortcut_button);
         energyText = findViewById(R.id.energy_consumed_text);
         energyText.setText("Energy Consumed: " + energyConsumed);
         startPauseButton = findViewById(R.id.start_pause_button);
@@ -81,24 +84,12 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
         wallsToggle.setChecked(true);
         solutionToggle.setChecked(true);
         mapToggle.setChecked(true);
-        //Gives the shortcut button a listener to get to the finish screen
-        shortcutButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //For now, just toast + log
-                String message = "Path Length: " + pathLength + "\nWin Status: " +
-                        won + "\nEnergy Consumed: " + energyConsumed;
-//                Toast.makeText(PlayAnimationActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
-                Log.v("PlayAnimationActivity",message);
-                Intent shortcutIntent = new Intent(PlayAnimationActivity.this, FinishActivity.class);
-                shortcutIntent.putExtra("energy", energyConsumed);
-                shortcutIntent.putExtra("win", won);
-                shortcutIntent.putExtra("path",pathLength);
-                startActivity(shortcutIntent);
-            }
-        });
         setStartPauseButtonListener();
         setToggleListeners();
+
+        myStatePlaying = new StatePlaying();
+        myStatePlaying.setMazeConfiguration(GeneratingActivity.myMaze);
+        myStatePlaying.start(myMazePanel, this);
     }
     /**
      * Returns to the starting screen upon pressing the back button.
@@ -111,18 +102,13 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
     }
 
     /**
-     * Make the start/pause button a listener. For now, it just
-     * creates a toast saying whether or not it is starting or pausing,
-     * and changes its text appropriately.
+     * Make the start/pause button a listener. This button either starts or pauses
+     * the animation.
      */
     private void setStartPauseButtonListener(){
         startPauseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = startPauseButton.getText() + " Clicked";
-//                Toast.makeText(PlayAnimationActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
                 //Swap the strings on the button to change it from start to pause and vice-versa
                 if(startPauseButton.getText().equals("Pause")){
@@ -136,40 +122,30 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
     }
     /**
      * This method sets up the various listeners for the toggles at the top of the screen.
-     * For now, just displays Toasts and Logs data, but for P5 will do things.
      */
     private void setToggleListeners(){
-        //Make wallToggle a listener, so I can add the required functionality for P5
+        //Make wallToggle a listener
         wallsToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Wall Toggle Clicked";
-//                Toast.makeText(PlayAnimationActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.TOGGLELOCALMAP, 0);
             }
         });
-        //Make solutionToggle a listener, so I can add the required functionality for P5
+        //Make solutionToggle a listener
         solutionToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Solution Toggle Clicked";
-//                Toast.makeText(PlayAnimationActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.TOGGLESOLUTION, 0);
             }
         });
-        //Make mapToggle a listener, so I can add the required functionality for P5
+        //Make mapToggle a listener
         mapToggle.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //Going to add functionality here for P5
-                //For now, just toast + log
                 String message = "Map Toggle Clicked";
-//                Toast.makeText(PlayAnimationActivity.this, message,
-//                        Toast.LENGTH_SHORT).show();
                 Log.v("PlayAnimationActivity",message);
+                myStatePlaying.keyDown(Constants.UserInput.TOGGLEFULLMAP, 0);
             }
         });
     }

@@ -86,17 +86,17 @@
         android:layout_marginEnd="20dp"
         android:textSize="20sp"
         />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/shortcut_button"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/walls_button"
-        app:layout_constraintBottom_toTopOf="@id/energy_consumed_text"
-        android:textSize="120dp"
-        android:text="@string/shortcut_string"
-        />
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/shortcut_button"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/walls_button"-->
+<!--        app:layout_constraintBottom_toTopOf="@id/energy_consumed_text"-->
+<!--        android:textSize="120dp"-->
+<!--        android:text="@string/shortcut_string"-->
+<!--        />-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,6 +106,15 @@
         android:id="@+id/energy_consumed_text"
         android:text="@string/energy_consumed_string"
         android:textSize="28sp"
+        />
+    <edu.wm.cs.cs301.nickwilson.gui.MazePanel
+        android:layout_width="1200px"
+        android:layout_height="1200px"
+        app:layout_constraintTop_toBottomOf="@id/walls_button"
+        app:layout_constraintBottom_toTopOf="@id/energy_consumed_text"
+        android:id="@+id/maze_panel"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         />
 <!--    <ProgressBar-->
 <!--        android:layout_width="wrap_content"-->
