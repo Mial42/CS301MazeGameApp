@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -68,6 +69,10 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
      * A RobotDriver used to control myRobot
      */
     private RobotDriver myRobotDriver;
+//    /**
+//     * A Handler to properly space out UI updates.
+//     */
+//    private final Handler myHandler = new Handler();
     /**
      * This method instantiates the various fields and sets them to the corresponding
      * XML components. It also sets up the various listeners for the various buttons.
@@ -118,6 +123,13 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
         startActivity(goHome);
     }
 
+//    /**
+//     *
+//     * @return myHandler, the handler for PlayAnimationActivity
+//     */
+//    public Handler getHandler(){
+//        return myHandler;
+//    }
     /**
      * Make the start/pause button a listener. This button either starts or pauses
      * the animation.
