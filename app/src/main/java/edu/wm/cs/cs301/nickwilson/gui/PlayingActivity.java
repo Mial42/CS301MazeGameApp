@@ -27,4 +27,20 @@ public interface PlayingActivity {
      * @return the Maze being played
      */
     public Maze getMaze();
+
+    /**
+     *
+     * @return the Robot used to play the maze. Null if nonexistent.
+     */
+    public Robot getRobot();
+    /**
+     *
+     * @return the RobotDriver used to control the robot. Null if nonexistent.
+     */
+    public RobotDriver getRobotDriver();
+
+    /**
+     * Updates various robot-related fields. Does nothing with no robot.
+     */
+    public void update();
 }

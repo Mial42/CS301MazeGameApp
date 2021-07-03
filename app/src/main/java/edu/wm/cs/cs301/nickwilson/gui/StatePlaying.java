@@ -107,11 +107,11 @@ public class StatePlaying  { //extends DefaultState
         	// else: dry-run without graphics, most likely for testing purposes
         	printWarning();
         }
-        //If running the game automatically (Controller has a Robot and a RobotDriver)
+        //If running the game automatically (PlayingActivity has a Robot and a RobotDriver)
         //Run the game automatically
-//        if(controller.getRobot() != null && controller.getDriver() != null) {
-//        	playGameAutomatically();
-//        }
+        if(activity.getRobot() != null && activity.getRobotDriver() != null) {
+        	playGameAutomatically();
+        }
     }
     /**
      * Initializes the drawer for the first person view
@@ -255,40 +255,40 @@ public class StatePlaying  { //extends DefaultState
      * It then calls the RobotDriver method drive2Exit.
      * Should only be called if playing the game with a Robot and RobotDriver
      */
-//    private void playGameAutomatically() {
-//    	//Finish setting up the Robot and RobotDriver so they work
-//    	control.getDriver().setRobot(control.getRobot());//Make sure the Robot and Driver are connected
-//    	control.getDriver().setMaze(mazeConfig); //Set the RobotDriver's Maze correctly
-//    	//Add new BasicSensors to the robot
-//    	control.getRobot().addDistanceSensor(new BasicSensor(), Direction.FORWARD);
-//    	control.getRobot().addDistanceSensor(new BasicSensor(), Direction.BACKWARD);
-//    	control.getRobot().addDistanceSensor(new BasicSensor(), Direction.LEFT);
-//    	control.getRobot().addDistanceSensor(new BasicSensor(), Direction.RIGHT);
-//    	//Toggle the map for easier viewing
-//    	keyDown(UserInput.TOGGLELOCALMAP, 0);
-//    	keyDown(UserInput.TOGGLEFULLMAP, 0);
-//    	keyDown(UserInput.TOGGLESOLUTION, 0);
-//    	//Play the game
-//    	try{
-//    		//System.out.println(control.getRobot().getBatteryLevel());
-//        	//Reset the Robot's energy levels and odometer
-//        	control.getRobot().resetOdometer();
-//        	control.getRobot().setBatteryLevel(2000);
-//        	((BasicRobot)control.getRobot()).resetStopped();//Unstop the robot
-//        	//System.out.println(control.getRobot().hasStopped());
-//    		//System.out.println(control.getRobot().getBatteryLevel());
-//    		control.getDriver().drive2Exit();
-//    		//System.out.println("Automated Win");
-//    		control.switchFromPlayingToWinning(control.getRobot().getOdometerReading(), 2000 - control.getRobot().getBatteryLevel());
-//    	}catch (Exception e) { //Exception happens if you run out of power
-//			//If you run out of power, swap to the winning state
-//    		//-1 is to show that something went wrong.
-//    		//Will also need to move over my energy consumption data
-//    		//System.out.println("Automated Loss");
-//    		//System.out.println(control.getRobot().getBatteryLevel());
-//    		control.switchFromPlayingToWinning(-1, 0);
-//		}
-//    }
+    private void playGameAutomatically() {
+    	//Finish setting up the Robot and RobotDriver so they work
+    	activity.getRobotDriver().setRobot(activity.getRobot());//Make sure the Robot and Driver are connected
+    	activity.getRobotDriver().setMaze(mazeConfig); //Set the RobotDriver's Maze correctly
+    	//Add new BasicSensors to the robot
+        activity.getRobot().addDistanceSensor(new BasicSensor(), Robot.Direction.FORWARD);
+        activity.getRobot().addDistanceSensor(new BasicSensor(), Robot.Direction.BACKWARD);
+        activity.getRobot().addDistanceSensor(new BasicSensor(), Robot.Direction.LEFT);
+        activity.getRobot().addDistanceSensor(new BasicSensor(), Robot.Direction.RIGHT);
+    	//Toggle the map for easier viewing
+    	keyDown(UserInput.TOGGLELOCALMAP, 0);
+    	keyDown(UserInput.TOGGLEFULLMAP, 0);
+    	keyDown(UserInput.TOGGLESOLUTION, 0);
+    	//Play the game
+    	try{
+    		//System.out.println(control.getRobot().getBatteryLevel());
+        	//Reset the Robot's energy levels and odometer
+            activity.getRobot().resetOdometer();
+            activity.getRobot().setBatteryLevel(2000);
+        	((BasicRobot)activity.getRobot()).resetStopped();//Unstop the robot
+        	//System.out.println(control.getRobot().hasStopped());
+    		//System.out.println(control.getRobot().getBatteryLevel());
+            activity.getRobotDriver().drive2Exit();
+    		//System.out.println("Automated Win");
+    		activity.moveToFinishScreen();
+    	}catch (Exception e) { //Exception happens if you run out of power
+			//If you run out of power, swap to the winning state
+    		//-1 is to show that something went wrong.
+    		//Will also need to move over my energy consumption data
+    		//System.out.println("Automated Loss");
+    		//System.out.println(control.getRobot().getBatteryLevel());
+            activity.moveToFinishScreen();
+		}
+    }
     /**
      * Prints the warning about a missing panel only once
      */

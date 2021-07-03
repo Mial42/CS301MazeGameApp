@@ -35,7 +35,7 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
     /**
      * Button for starting and pausing the animation
      */
-    private  Button startPauseButton;
+    private Button startPauseButton;
     /**
      * int recording the total path length.
      */
@@ -60,6 +60,14 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
      * A StatePlaying to actually play the game
      */
     private StatePlaying myStatePlaying;
+    /**
+     * A Robot used to play the game
+     */
+    private Robot myRobot;
+    /**
+     * A RobotDriver used to control myRobot
+     */
+    private RobotDriver myRobotDriver;
     /**
      * This method instantiates the various fields and sets them to the corresponding
      * XML components. It also sets up the various listeners for the various buttons.
@@ -173,5 +181,35 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
     @Override
     public Maze getMaze() {
         return GeneratingActivity.myMaze;
+    }
+
+    /**
+     * Updates the energy and odometer with the values from myRobot.
+     * Updates win status with isAtExit from myRobot.
+     */
+    @Override
+    public void update(){
+        energyConsumed = (int)(2000 - myRobot.getBatteryLevel());
+        pathLength = myRobot.getOdometerReading();
+        pathLengthText.setText("Path Length: " +  pathLength);
+        energyText.setText("Energy Consumed: " + energyConsumed);
+        if(myRobot.isAtExit()){
+            won = true;
+        }
+    }
+    /**
+     * @return the Robot used to play the maze. Null if nonexistent.
+     */
+    @Override
+    public Robot getRobot() {
+        return myRobot;
+    }
+
+    /**
+     * @return the RobotDriver used to control the robot. Null if nonexistent.
+     */
+    @Override
+    public RobotDriver getRobotDriver() {
+        return myRobotDriver;
     }
 }

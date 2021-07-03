@@ -202,4 +202,23 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
     public Maze getMaze() {
         return GeneratingActivity.myMaze;
     }
+
+    /**
+     * @return the Robot used to play the maze. Null if nonexistent.
+     */
+    @Override
+    public Robot getRobot() {
+        return null;
+    }
+
+    /**
+     * @return the RobotDriver used to control the robot. Null if nonexistent.
+     */
+    @Override
+    public RobotDriver getRobotDriver() {
+        return null;
+    }
+    @Override
+    public void update(){
+    }
 }

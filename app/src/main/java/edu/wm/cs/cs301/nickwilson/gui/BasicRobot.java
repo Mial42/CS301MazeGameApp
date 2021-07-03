@@ -101,11 +101,6 @@ public class BasicRobot implements Robot {
 		myOdometer = 0;
 		amStopped = false;
 		batteryLevel = 2000;
-		
-		addDistanceSensor(new BasicSensor(), Direction.FORWARD);
-		addDistanceSensor(new BasicSensor(), Direction.BACKWARD);
-		addDistanceSensor(new BasicSensor(), Direction.LEFT);
-		addDistanceSensor(new BasicSensor(), Direction.RIGHT);
 	}
 	@Override
 	public void setPlayingActivity(PlayingActivity act) {
@@ -249,7 +244,7 @@ public class BasicRobot implements Robot {
 				amStopped = true;
 			}
 		}
-		
+		myPlayingActivity.update();//Update displayed energy and odometer readings
 	}
 
 	@Override
@@ -276,6 +271,7 @@ public class BasicRobot implements Robot {
 			}
 			setBatteryLevel(batteryLevel - getEnergyForStepForward());
 			myOdometer++;
+			myPlayingActivity.update();//Update displayed energy and odometer readings
 			myStatePlaying.keyDown(UserInput.UP, 0);
 			distance--;
 			distanceToWall--;
@@ -326,6 +322,7 @@ public class BasicRobot implements Robot {
 	public int distanceToObstacle(Direction direction) throws UnsupportedOperationException {
 		//Return the corresponding DistanceSensor's distance to the nearest obstacle
 		setBatteryLevel(batteryLevel - 1);//Count down counter
+		myPlayingActivity.update();//Update displayed energy and odometer readings
 		float[] batteryAsFloatArray = {batteryLevel};
 		if(this.hasDistanceSensor(direction) == false) { //If there's no distance sensor
 			throw new UnsupportedOperationException(); //Throw an exception
