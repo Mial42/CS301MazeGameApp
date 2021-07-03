@@ -13,6 +13,8 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import edu.wm.cs.cs301.nickwilson.R;
+import edu.wm.cs.cs301.nickwilson.generation.Maze;
+
 public class PlayAnimationActivity extends AppCompatActivity implements PlayingActivity{
     /**
      * Toggles visible walls
@@ -166,6 +168,10 @@ public class PlayAnimationActivity extends AppCompatActivity implements PlayingA
     }
     @Override
     public MazePanel getMazePanel(){
-        return null; //TODO fix this
+        return myMazePanel;
+    }
+    @Override
+    public Maze getMaze() {
+        return GeneratingActivity.myMaze;
     }
 }

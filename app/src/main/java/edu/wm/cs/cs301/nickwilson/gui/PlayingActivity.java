@@ -1,5 +1,7 @@
 package edu.wm.cs.cs301.nickwilson.gui;
 
+import edu.wm.cs.cs301.nickwilson.generation.Maze;
+
 /**
  * This interface encapsulates what's needed to move to the finish screen
  * and return the MazePanel used to draw the screen for
@@ -19,4 +21,10 @@ public interface PlayingActivity {
      * @return the MazePanel used to draw on the screen
      */
     public MazePanel getMazePanel();
+
+    /**
+     *
+     * @return the Maze being played
+     */
+    public Maze getMaze();
 }

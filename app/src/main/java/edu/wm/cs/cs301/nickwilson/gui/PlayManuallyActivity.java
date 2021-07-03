@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import edu.wm.cs.cs301.nickwilson.R;
+import edu.wm.cs.cs301.nickwilson.generation.Maze;
 
 public class PlayManuallyActivity extends AppCompatActivity implements PlayingActivity {
     /**
@@ -192,5 +193,13 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
     @Override
     public MazePanel getMazePanel(){
         return myMazePanel;
+    }
+
+    /**
+     * @return the Maze being played
+     */
+    @Override
+    public Maze getMaze() {
+        return GeneratingActivity.myMaze;
     }
 }
