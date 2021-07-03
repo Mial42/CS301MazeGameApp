@@ -155,7 +155,7 @@ public class Wall {
         //System.out.println("Initcolor rgb: " + rgbValue);
         Log.v("Wall.createColor", "Distance: " + distance + "" +
                 "\nCC: " + cc);
-        return Color.RED;
+        return Color.BLUE;
 //        switch (((d >> 3) ^ cc) % 6) {
 //        case 0:
 //            //return(new Color(rgbValue, RGB_DEF, RGB_DEF));
