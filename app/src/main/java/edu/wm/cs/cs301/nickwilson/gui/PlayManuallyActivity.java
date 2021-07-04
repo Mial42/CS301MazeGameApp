@@ -15,6 +15,10 @@ import edu.wm.cs.cs301.nickwilson.generation.Maze;
 
 public class PlayManuallyActivity extends AppCompatActivity implements PlayingActivity {
     /**
+     * int representing the pathLength to the end
+     */
+    private int pathLength = 0;
+    /**
      * Toggles visible walls
      */
     private ToggleButton wallsToggle;
@@ -131,6 +135,7 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
                 String message = "Left Button Clicked";
                 Log.v("PlayManuallyActivity",message);
                 myStatePlaying.keyDown(Constants.UserInput.LEFT, 0);
+                //pathLength++;
             }
         });
         //Make rightButton a listener to call the appropriate StatePlaying method
@@ -139,6 +144,7 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
                 String message = "Right Button Clicked";
                 Log.v("PlayManuallyActivity",message);
                 myStatePlaying.keyDown(Constants.UserInput.RIGHT, 0);
+                //pathLength++;
             }
         });
         //Make forwards button a listener to call the appropriate StatePlaying method
@@ -147,6 +153,7 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
                 String message = "Forwards Button Clicked";
                 Log.v("PlayManuallyActivity",message);
                 myStatePlaying.keyDown(Constants.UserInput.UP, 0);
+                pathLength++;
             }
         });
         //Make jump button a listener to call the appropriate StatePlaying method
@@ -155,6 +162,7 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
                 String message = "Jump Button Clicked";
                 Log.v("PlayManuallyActivity",message);
                 myStatePlaying.keyDown(Constants.UserInput.JUMP, 0);
+                pathLength++;
             }
         });
         //Make backwards button a listener to call the appropriate StatePlaying method
@@ -163,6 +171,7 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
                 String message = "Back Button Clicked";
                 Log.v("PlayManuallyActivity",message);
                 myStatePlaying.keyDown(Constants.UserInput.DOWN, 0);
+                pathLength++;
             }
         });
     }
@@ -187,7 +196,7 @@ public class PlayManuallyActivity extends AppCompatActivity implements PlayingAc
         Intent shortcutIntent = new Intent(PlayManuallyActivity.this, FinishActivity.class);
         shortcutIntent.putExtra("energy", -1);
         shortcutIntent.putExtra("win", true);
-        shortcutIntent.putExtra("path",-1);
+        shortcutIntent.putExtra("path",pathLength);
         startActivity(shortcutIntent);
     }
     @Override

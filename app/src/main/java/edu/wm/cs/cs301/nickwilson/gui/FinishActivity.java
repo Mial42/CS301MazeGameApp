@@ -54,14 +54,14 @@ public class FinishActivity extends AppCompatActivity {
         if(!victory){
             victoryText.setText(R.string.lose_string);
         }
+        pathText.setText("Path Length: " + pathLength);
         //Display energy consumption/path length data
-        if(pathLength > -1 && energyConsumed > -1){//If playing animated
+        if(energyConsumed > -1){//If playing animated
             energyText.setText("Energy Consumed: " + energyConsumed);
-            pathText.setText("Path Length: " + pathLength);
         }
         else{ //If playing manually, don't need to see energy or path length
             energyText.setVisibility(View.INVISIBLE);
-            pathText.setVisibility(View.INVISIBLE);
+            //pathText.setVisibility(View.INVISIBLE);
         }
         setRestartButtonListener();
     }

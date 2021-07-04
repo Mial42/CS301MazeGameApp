@@ -34,7 +34,7 @@ import edu.wm.cs.cs301.nickwilson.generation.Maze;
 public class StatePlaying  { //extends DefaultState
 	FirstPersonView firstPersonView;
 	Map mapView;
-    MazePanel panel;
+	MazePanel panel;
     //Controller control;
     PlayingActivity activity;
     Maze mazeConfig ; 

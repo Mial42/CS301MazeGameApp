@@ -43,6 +43,7 @@ public class WallFollower implements RobotDriver {
 		//Return false
 		while(!myRobot.isAtExit()) {
 			try {
+				//threadedDrive1Step2Exit();
 				drive1Step2Exit(); //Try to drive 1 more step
 				//Thread.currentThread().sleep(1000);//For aesthetics and testing
 			} catch (Exception e) {
@@ -56,6 +57,31 @@ public class WallFollower implements RobotDriver {
 		return true;//If I reach the exit, return true
 	}
 
+	/**
+	 * This method does drive1step2exit in a different thread so as not to clog the UI thread
+	 * @return true if moved, false otherwise
+	 * @throws Exception if out of power
+	 */
+	public boolean threadedDrive1Step2Exit() throws Exception {
+		final boolean[] throwErrorReturnFalse = {false, true};
+		Thread tempThread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					throwErrorReturnFalse[1] = drive1Step2Exit();
+					Thread.sleep(100);
+				} catch (Exception e) {
+					//e.printStackTrace();
+					throwErrorReturnFalse[0] = true;
+				}
+			}
+		});
+		tempThread.start();
+		if(throwErrorReturnFalse[0]){
+			throw new Exception();
+		}
+		return throwErrorReturnFalse[1];
+	}
 	@Override
 	public boolean drive1Step2Exit() throws Exception {
 		//If at the exit, rotate to face the exit and return false
